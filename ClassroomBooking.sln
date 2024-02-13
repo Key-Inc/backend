@@ -2,6 +2,14 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomBooking.Web", "ClassroomBooking.Web\ClassroomBooking.Web.csproj", "{07DD24A8-BA4C-41A7-8998-DD10836A3560}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomBooking.Persistence", "ClassroomBooking.Persistence\ClassroomBooking.Persistence.csproj", "{83AEEF49-466D-4E21-8EA2-49492066D450}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomBooking.Infrastructure", "ClassroomBooking.Infrastructure\ClassroomBooking.Infrastructure.csproj", "{EF53190E-6718-48BE-9BDC-8E087F80107A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomBooking.Domain", "ClassroomBooking.Domain\ClassroomBooking.Domain.csproj", "{1341F667-3B12-45B4-956E-0EA638F3790E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomBooking.Application", "ClassroomBooking.Application\ClassroomBooking.Application.csproj", "{E068C235-8EC3-40B3-A1B6-CEFD9698FB44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +20,23 @@ Global
 		{07DD24A8-BA4C-41A7-8998-DD10836A3560}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07DD24A8-BA4C-41A7-8998-DD10836A3560}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07DD24A8-BA4C-41A7-8998-DD10836A3560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83AEEF49-466D-4E21-8EA2-49492066D450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83AEEF49-466D-4E21-8EA2-49492066D450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83AEEF49-466D-4E21-8EA2-49492066D450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83AEEF49-466D-4E21-8EA2-49492066D450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF53190E-6718-48BE-9BDC-8E087F80107A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF53190E-6718-48BE-9BDC-8E087F80107A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF53190E-6718-48BE-9BDC-8E087F80107A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF53190E-6718-48BE-9BDC-8E087F80107A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1341F667-3B12-45B4-956E-0EA638F3790E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1341F667-3B12-45B4-956E-0EA638F3790E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1341F667-3B12-45B4-956E-0EA638F3790E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1341F667-3B12-45B4-956E-0EA638F3790E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E068C235-8EC3-40B3-A1B6-CEFD9698FB44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E068C235-8EC3-40B3-A1B6-CEFD9698FB44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E068C235-8EC3-40B3-A1B6-CEFD9698FB44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E068C235-8EC3-40B3-A1B6-CEFD9698FB44}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal
