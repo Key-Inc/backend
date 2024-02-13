@@ -3,7 +3,7 @@ using ClassroomBooking.Domain.Enums;
 
 namespace ClassroomBooking.Domain.Entities;
 
-public sealed class User: BaseEntity
+public sealed class User : BaseEntity
 {
     public required string FullName { get; set; }
     public DateTime? BirthDate { get; set; }
@@ -12,4 +12,6 @@ public sealed class User: BaseEntity
     public required string Password { get; set; }
     public string? PhoneNumber { get; set; }
     public UserRole UserRole { get; set; }
+
+    public IEnumerable<KeyRequest>? Requests { get; set; }
 }

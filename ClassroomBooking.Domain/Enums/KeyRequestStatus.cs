@@ -1,10 +1,8 @@
 ﻿namespace ClassroomBooking.Domain.Enums;
 
-public enum UserRole
+public enum KeyRequestStatus
 {
     UnderConsideration,
-    Admin,
-    Dean,
-    Teacher,
-    Student
+    Accepted,
+    Rejected
 }

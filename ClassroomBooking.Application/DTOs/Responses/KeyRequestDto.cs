@@ -1,18 +1,25 @@
-﻿using ClassroomBooking.Domain.Entities.Base;
+﻿using System.ComponentModel.DataAnnotations;
 using ClassroomBooking.Domain.Enums;
 
-namespace ClassroomBooking.Domain.Entities;
+namespace ClassroomBooking.Application.DTOs.Responses;
 
-public sealed class KeyRequest: BaseEntity
+public sealed class KeyRequestDto
 {
+    [Required]
     public required KeyRequestStatus Status { get; set; }
+    
+    [Required]
     public required DateTime StartDate { get; set; }
+    
+    [Required]
     public required DateTime EndDate { get; set; }
+    
+    [Required]
     public required bool IsRecurring { get; set; }
     
+    [Required]
     public required Guid UserId { get; set; }
-    public required Guid KeyId { get; set; }
     
-    public User? User { get; set; }
-    public Key? Key { get; set; }
+    [Required]
+    public required Guid KeyId { get; set; }
 }
