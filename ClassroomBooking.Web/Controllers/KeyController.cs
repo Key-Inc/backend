@@ -15,8 +15,15 @@ public sealed class KeyController: BaseController
     }
 
     [HttpPut]
-    [Route("{id:guid}")]
-    public async Task<ActionResult<KeyEditDto>> EditKey(Guid id)
+    [Route("{id:guid}/user/{userId:guid}/issued")]
+    public async Task<IActionResult> IssuedKey(Guid id, Guid userId)
+    {
+        throw new NotImplementedException();
+    }
+    
+    [HttpPut]
+    [Route("{id:guid}/instock")]
+    public async Task<IActionResult> InStockKey(Guid id)
     {
         throw new NotImplementedException();
     }

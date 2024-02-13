@@ -34,22 +34,22 @@ public sealed class RequestController: BaseController
     }
     
     [HttpPut]
-    [Route("{id}/reject")]
+    [Route("{id:guid}/reject")]
     public async Task<IActionResult> RejectRequest(Guid id)
     {
         throw new NotImplementedException();
     }
     
     [HttpDelete]
-    [Route("{id}/delete")]
+    [Route("{id:guid}/delete")]
     public async Task<IActionResult> DeleteRequest(Guid id)
     {
         throw new NotImplementedException();
     }
     
     [HttpPut]
-    [Route("{id}/transfer")]
-    public async Task<IActionResult> TransferRequest(Guid id)
+    [Route("{id:guid}/user/{userId:guid}/transfer")]
+    public async Task<IActionResult> TransferRequest(Guid id, Guid userId)
     {
         throw new NotImplementedException();
     }    
