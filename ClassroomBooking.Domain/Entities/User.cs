@@ -11,7 +11,7 @@ public sealed class User : BaseEntity
     public required string Email { get; set; }
     public required string Password { get; set; }
     public string? PhoneNumber { get; set; }
-    public UserRole UserRole { get; set; }
+    public UserRole? UserRole { get; set; }
 
     public IEnumerable<KeyRequest>? Requests { get; set; }
 }

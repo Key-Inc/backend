@@ -10,7 +10,7 @@ public sealed class RequestController : BaseController
 {
     [HttpGet]
     [Route("free-time")]
-    public async Task<ActionResult<DateTime>> GetFreeTime(
+    public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetFreeTime(
         [FromQuery] int? classroomNumber,
         [FromQuery] [DataType(DataType.Date)] DateTime? date)
     {

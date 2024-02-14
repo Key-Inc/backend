@@ -18,7 +18,7 @@ public sealed class AccountController : BaseController
 
     [HttpPost]
     [Route("login")]
-    public async Task<IActionResult> LogIn(LoginCredentialsDto credentials)
+    public async Task<ActionResult<TokenResponseDto>> LogIn(LoginCredentialsDto credentials)
     {
         throw new NotImplementedException();
     }

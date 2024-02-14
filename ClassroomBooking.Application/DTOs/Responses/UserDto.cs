@@ -24,6 +24,5 @@ public sealed class UserDto
     [EmailAddress]
     public required string Email { get; set; }
     
-    [Required]
-    public required UserRole UserRole { get; set; }
+    public UserRole? UserRole { get; set; }
 }
