@@ -1,9 +1,11 @@
+using ClassroomBooking.Application;
 using ClassroomBooking.Persistence;
 using ClassroomBooking.Web;
 using ClassroomBooking.Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddApplicationLayer();
 builder.Services.AddPersistenceLayer(builder.Configuration);
 builder.Services.AddPresentationLayer();
 
