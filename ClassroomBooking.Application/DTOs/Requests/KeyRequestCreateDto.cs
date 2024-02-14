@@ -14,8 +14,5 @@ public sealed class KeyRequestCreateDto
     public required bool IsRecurring { get; set; }
     
     [Required]
-    public required Guid UserId { get; set; }
-    
-    [Required]
-    public required Guid KeyId { get; set; }
+    public required int ClassroomNumber { get; set; }
 }

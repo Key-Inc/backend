@@ -8,6 +8,13 @@ namespace ClassroomBooking.Web.Controllers;
 public sealed class RequestController: BaseController
 {
     [HttpGet]
+    [Route("free-time")]
+    public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetFreeTime([FromQuery] int? classroomNumber)
+    {
+        throw new NotImplementedException();
+    }
+    
+    [HttpGet]
     [Route("my")]
     public async Task<ActionResult<IEnumerable<KeyRequestDto>>> GetMyRequests()
     {
@@ -27,8 +34,8 @@ public sealed class RequestController: BaseController
     }
     
     [HttpPut]
-    [Route(("{id:guid}/accept"))]
-    public async Task<IActionResult> AcceptRequest(Guid id)
+    [Route(("{requestId:guid}/key/{keyId:guid}/accept"))]
+    public async Task<IActionResult> AcceptRequest(Guid requestId, Guid keyId)
     {
         throw new NotImplementedException();
     }
