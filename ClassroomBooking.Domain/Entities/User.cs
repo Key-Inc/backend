@@ -1,5 +1,5 @@
 ﻿using ClassroomBooking.Domain.Entities.Base;
-using ClassroomBooking.Domain.Enums;
+using ClassroomBooking.Domain.Entities.Enums;
 
 namespace ClassroomBooking.Domain.Entities;
 

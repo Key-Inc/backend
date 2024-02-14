@@ -1,5 +1,5 @@
 ﻿using ClassroomBooking.Application.DTOs.Responses;
-using ClassroomBooking.Domain.Enums;
+using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
 using Microsoft.AspNetCore.Mvc;
 

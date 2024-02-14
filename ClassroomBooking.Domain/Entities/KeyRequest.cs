@@ -1,9 +1,9 @@
 ﻿using ClassroomBooking.Domain.Entities.Base;
-using ClassroomBooking.Domain.Enums;
+using ClassroomBooking.Domain.Entities.Enums;
 
 namespace ClassroomBooking.Domain.Entities;
 
-public sealed class KeyRequest: BaseEntity
+public sealed class KeyRequest : BaseEntity
 {
     public required RequestStatus Status { get; set; }
     public required DateTime StartDate { get; set; }

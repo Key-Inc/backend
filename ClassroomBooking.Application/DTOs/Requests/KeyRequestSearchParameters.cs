@@ -2,7 +2,7 @@
 
 namespace ClassroomBooking.Application.DTOs.Requests;
 
-public sealed class KeyRequestSearchParameters: PaginationParameters
+public sealed class KeyRequestSearchParameters : PaginationParameters
 {
     public DateTime? MinDate { get; set; }
     

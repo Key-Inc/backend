@@ -3,7 +3,7 @@ using ClassroomBooking.Application.DTOs.Enums;
 
 namespace ClassroomBooking.Application.DTOs.Requests;
 
-public sealed class RegistrationRequestSearchParameters: PaginationParameters
+public sealed class RegistrationRequestSearchParameters : PaginationParameters
 {
     public string? Gender { get; set; }
     

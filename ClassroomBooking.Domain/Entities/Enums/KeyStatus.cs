@@ -1,4 +1,4 @@
-﻿namespace ClassroomBooking.Domain.Enums;
+﻿namespace ClassroomBooking.Domain.Entities.Enums;
 
 public enum KeyStatus
 {

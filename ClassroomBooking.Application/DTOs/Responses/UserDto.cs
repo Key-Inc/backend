@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ClassroomBooking.Domain.Enums;
+using ClassroomBooking.Domain.Entities.Enums;
 
 namespace ClassroomBooking.Application.DTOs.Responses;
 
