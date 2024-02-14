@@ -5,7 +5,7 @@ namespace ClassroomBooking.Domain.Entities;
 
 public sealed class KeyRequest: BaseEntity
 {
-    public required KeyRequestStatus Status { get; set; }
+    public required RequestStatus Status { get; set; }
     public required DateTime StartDate { get; set; }
     public required DateTime EndDate { get; set; }
     public required bool IsRecurring { get; set; }

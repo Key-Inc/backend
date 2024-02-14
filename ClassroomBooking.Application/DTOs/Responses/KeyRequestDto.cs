@@ -6,7 +6,7 @@ namespace ClassroomBooking.Application.DTOs.Responses;
 public sealed class KeyRequestDto
 {
     [Required]
-    public required KeyRequestStatus Status { get; set; }
+    public required RequestStatus Status { get; set; }
     
     [Required]
     public required DateTime StartDate { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace ClassroomBooking.Domain.Enums;
 
-public enum KeyRequestStatus
+public enum RequestStatus
 {
     UnderConsideration,
     Accepted,

@@ -29,6 +29,13 @@ public sealed class AccountController: BaseController
         throw new NotImplementedException();
     }
 
+    [HttpGet]
+    [Route("registration-status")]
+    public async Task<ActionResult<RequestStatus>> GetRegistrationStatus()
+    {
+        throw new NotImplementedException();
+    }
+
     [HttpPut]
     [Route("profile")]
     public async Task<IActionResult> EditProfile(UserEditDto editDto)
