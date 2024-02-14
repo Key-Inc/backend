@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
 
-public sealed class AccountController: BaseController
+public sealed class AccountController : BaseController
 {
     [HttpPost]
     [Route("register")]
@@ -15,7 +15,7 @@ public sealed class AccountController: BaseController
     {
         throw new NotImplementedException();
     }
-    
+
     [HttpPost]
     [Route("login")]
     public async Task<IActionResult> LogIn(LoginCredentialsDto credentials)
@@ -50,7 +50,7 @@ public sealed class AccountController: BaseController
     {
         throw new NotImplementedException();
     }
-    
+
     [HttpPut]
     [Route("profile")]
     public async Task<IActionResult> EditProfile(UserEditDto editDto)
@@ -64,10 +64,11 @@ public sealed class AccountController: BaseController
     {
         throw new NotImplementedException();
     }
-    
+
     [HttpGet]
     [Route("consideration")]
-    public async Task<ActionResult<RegistrationRequestPagedListDto>> GetRegistrationRequestList([FromQuery] RegistrationRequestSearchParameters parameters)
+    public async Task<ActionResult<RegistrationRequestPagedListDto>> GetRegistrationRequestList(
+        [FromQuery] RegistrationRequestSearchParameters parameters)
     {
         throw new NotImplementedException();
     }

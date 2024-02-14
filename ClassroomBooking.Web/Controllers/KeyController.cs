@@ -1,12 +1,10 @@
-﻿using ClassroomBooking.Application.DTOs.Requests;
-using ClassroomBooking.Application.DTOs.Responses;
-using ClassroomBooking.Domain.Enums;
+﻿using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Web.Controllers.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
 
-public sealed class KeyController: BaseController
+public sealed class KeyController : BaseController
 {
     [HttpGet]
     public async Task<ActionResult<IEnumerable<KeyDto>>> GetKeys()

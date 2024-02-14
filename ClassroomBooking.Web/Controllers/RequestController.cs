@@ -1,19 +1,22 @@
-﻿using ClassroomBooking.Application.DTOs.Requests;
+﻿using System.ComponentModel.DataAnnotations;
+using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Web.Controllers.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
 
-public sealed class RequestController: BaseController
+public sealed class RequestController : BaseController
 {
     [HttpGet]
     [Route("free-time")]
-    public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetFreeTime([FromQuery] int? classroomNumber)
+    public async Task<ActionResult<DateTime>> GetFreeTime(
+        [FromQuery] int? classroomNumber,
+        [FromQuery] [DataType(DataType.Date)] DateTime? date)
     {
         throw new NotImplementedException();
     }
-    
+
     [HttpGet]
     [Route("my")]
     public async Task<ActionResult<IEnumerable<KeyRequestDto>>> GetMyRequests()
@@ -22,7 +25,8 @@ public sealed class RequestController: BaseController
     }
 
     [HttpGet]
-    public async Task<ActionResult<KeyRequestPagedListDto>> GetKeyRequestList([FromQuery] KeyRequestSearchParameters parameters)
+    public async Task<ActionResult<KeyRequestPagedListDto>> GetKeyRequestList(
+        [FromQuery] KeyRequestSearchParameters parameters)
     {
         throw new NotImplementedException();
     }
@@ -32,32 +36,32 @@ public sealed class RequestController: BaseController
     {
         throw new NotImplementedException();
     }
-    
+
     [HttpPut]
     [Route(("{requestId:guid}/key/{keyId:guid}/accept"))]
     public async Task<IActionResult> AcceptRequest(Guid requestId, Guid keyId)
     {
         throw new NotImplementedException();
     }
-    
+
     [HttpPut]
     [Route("{id:guid}/reject")]
     public async Task<IActionResult> RejectRequest(Guid id)
     {
         throw new NotImplementedException();
     }
-    
+
     [HttpDelete]
     [Route("{id:guid}/delete")]
     public async Task<IActionResult> DeleteRequest(Guid id)
     {
         throw new NotImplementedException();
     }
-    
+
     [HttpPut]
     [Route("{id:guid}/user/{userId:guid}/transfer")]
     public async Task<IActionResult> TransferRequest(Guid id, Guid userId)
     {
         throw new NotImplementedException();
-    }    
+    }
 }
