@@ -14,5 +14,6 @@ public sealed class KeyRequestCreateDto
     public required bool IsRecurring { get; set; }
     
     [Required]
+    [Range(0, int.MaxValue)]
     public required int ClassroomNumber { get; set; }
 }

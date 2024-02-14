@@ -57,11 +57,4 @@ public sealed class RequestController : BaseController
     {
         throw new NotImplementedException();
     }
-
-    [HttpPut]
-    [Route("{id:guid}/user/{userId:guid}/transfer")]
-    public async Task<IActionResult> TransferRequest(Guid id, Guid userId)
-    {
-        throw new NotImplementedException();
-    }
 }
