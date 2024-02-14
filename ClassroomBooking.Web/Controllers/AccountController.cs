@@ -1,4 +1,5 @@
-﻿using ClassroomBooking.Application.DTOs.Requests;
+﻿using System.ComponentModel.DataAnnotations;
+using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Domain.Enums;
 using ClassroomBooking.Web.Controllers.Base;
@@ -44,8 +45,8 @@ public sealed class AccountController: BaseController
     }
 
     [HttpPut]
-    [Route("role")]
-    public async Task<IActionResult> EditRole(IEnumerable<ChangeUserRoleDto> users)
+    [Route("{userId:guid}/role")]
+    public async Task<IActionResult> EditUserRole(Guid userId, [FromQuery] [Required] UserRole userRole)
     {
         throw new NotImplementedException();
     }

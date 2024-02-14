@@ -2,7 +2,6 @@
 
 public enum UserRole
 {
-    UnderConsideration,
     Admin,
     Dean,
     Teacher,
