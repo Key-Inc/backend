@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using ClassroomBooking.Web.Middlewares;
 
-namespace ClassroomBooking.Web.Extensions;
+namespace ClassroomBooking.Web;
 
 public static class DependencyInjection
 {
