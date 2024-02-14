@@ -38,15 +38,15 @@ public sealed class AccountController: BaseController
     }
 
     [HttpPut]
-    [Route("approve/{requestId:guid}")]
-    public async Task<IActionResult> AcceptRegistrationRequest(Guid requestId, [FromQuery] [Required] UserRole userRole)
+    [Route("{userId:guid}/approve/")]
+    public async Task<IActionResult> AcceptRegistrationRequest(Guid userId, [FromQuery] [Required] UserRole userRole)
     {
         throw new NotImplementedException();
     }
 
     [HttpPut]
-    [Route("reject/{requestId:guid}")]
-    public async Task<IActionResult> RejectRegistrationRequest(Guid requestId)
+    [Route("{userId:guid}/reject")]
+    public async Task<IActionResult> RejectRegistrationRequest(Guid userId)
     {
         throw new NotImplementedException();
     }
