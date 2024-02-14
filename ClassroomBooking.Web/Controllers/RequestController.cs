@@ -38,7 +38,7 @@ public sealed class RequestController : BaseController
     }
 
     [HttpPut]
-    [Route(("{requestId:guid}/key/{keyId:guid}/accept"))]
+    [Route(("{requestId:guid}/key/{keyId:guid}/approve"))]
     public async Task<IActionResult> AcceptRequest(Guid requestId, Guid keyId)
     {
         throw new NotImplementedException();

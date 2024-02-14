@@ -5,7 +5,7 @@ namespace ClassroomBooking.Application.DTOs.Responses;
 public sealed class KeyRequestPagedListDto
 {
     [Required]
-    public required IEnumerable<KeyRequestDto> Keys { get; set; }
+    public required IEnumerable<KeyRequestDto> Requests { get; set; }
     
     [Required]
     public required PageInfoDto Pagination { get; set; } 
