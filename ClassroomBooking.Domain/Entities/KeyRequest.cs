@@ -9,10 +9,8 @@ public sealed class KeyRequest : BaseEntity
     public required DateTime StartDate { get; set; }
     public required DateTime EndDate { get; set; }
     public required bool IsRecurring { get; set; }
-    
-    public required Guid UserId { get; set; }
-    public required Guid KeyId { get; set; }
+    public required int ClassroomNumber { get; set; }
     
     public User? User { get; set; }
-    public Key? Key { get; set; }
+    public required Guid UserId { get; set; }
 }

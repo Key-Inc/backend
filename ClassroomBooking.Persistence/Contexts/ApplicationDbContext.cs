@@ -1,6 +1,5 @@
 using ClassroomBooking.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Key = Microsoft.EntityFrameworkCore.Metadata.Internal.Key;
 
 namespace ClassroomBooking.Persistence.Contexts;
 
