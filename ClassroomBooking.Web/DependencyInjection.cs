@@ -15,6 +15,6 @@ public static class DependencyInjection
 
     private static void AddMiddlewares(this IServiceCollection services)
     {
-        services.AddTransient<ExceptionHandlingMiddleware>();
+        services.AddSingleton<ExceptionHandlingMiddleware>();
     }
 }
