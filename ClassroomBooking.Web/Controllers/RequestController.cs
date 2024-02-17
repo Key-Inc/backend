@@ -9,8 +9,8 @@ namespace ClassroomBooking.Web.Controllers;
 public sealed class RequestController : BaseController
 {
     [HttpGet]
-    [Route("free-time")]
-    public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetFreeTime(
+    [Route("schedule")]
+    public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetSchedule(
         [FromQuery] int? classroomNumber,
         [FromQuery] [DataType(DataType.Date)] DateTime? date)
     {
