@@ -1,4 +1,5 @@
 using System.Security.Authentication;
+using ClassroomBooking.Application.Common.Exceptions.Base;
 using ClassroomBooking.Application.Common.Interfaces.Repositories;
 using ClassroomBooking.Application.Common.Interfaces.Services;
 using ClassroomBooking.Application.DTOs.Requests;
@@ -17,6 +18,17 @@ internal sealed class AuthService : IAuthService
     {
         _jwtProvider = jwtProvider;
         _userRepository = userRepository;
+    }
+
+    public async Task<TokenResponseDto> Register(User user)
+    {
+        var userExists = await _userRepository.Entities.AnyAsync(existing => existing.Email == user.Email);
+        if (userExists) throw new BadRequestException($"User with {user.Email} already exists");
+
+        user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+        await _userRepository.AddAsync(user);
+
+        return GetTokenResponse(user);
     }
 
     public async Task<TokenResponseDto> LogIn(LoginCredentialsDto credentials)
