@@ -8,19 +8,18 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    networks: 
+    networks:
       - my-net
-    depends_on: 
+    depends_on:
       - db
   db:
-    hostname: database_host
     container_name: postgres
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: classroom_booking
-    expose:  
+    expose:
       - "5432"
     networks:
       - my-net
