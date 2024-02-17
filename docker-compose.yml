@@ -13,6 +13,7 @@ services:
     depends_on: 
       - db
   db:
+    hostname: database_host
     container_name: postgres
     image: postgres:latest
     environment:
