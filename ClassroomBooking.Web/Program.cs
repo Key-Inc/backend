@@ -1,4 +1,5 @@
 using ClassroomBooking.Application;
+using ClassroomBooking.Infrastructure;
 using ClassroomBooking.Persistence;
 using ClassroomBooking.Web;
 using ClassroomBooking.Web.Extensions;
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationLayer();
 builder.Services.AddPersistenceLayer(builder.Configuration);
+builder.Services.AddInfrastructureLayer();
 builder.Services.AddPresentationLayer();
 
 builder.Services.Configure<RouteOptions>(options =>

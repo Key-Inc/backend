@@ -1,14 +1,15 @@
 using ClassroomBooking.Application.Common.Interfaces.Repositories;
 using ClassroomBooking.Domain.Entities.Base;
+using ClassroomBooking.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomBooking.Persistence.Repositories;
 
-public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+internal class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 {
-    private readonly DbContext _dbContext;
+    private readonly ApplicationDbContext _dbContext;
 
-    protected BaseRepository(DbContext dbContext) => _dbContext = dbContext;
+    protected BaseRepository(ApplicationDbContext dbContext) => _dbContext = dbContext;
 
     public IQueryable<T> Entities => _dbContext.Set<T>();
     
