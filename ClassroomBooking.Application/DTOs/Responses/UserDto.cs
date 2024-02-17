@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ClassroomBooking.Application.Common.Mappings;
+using ClassroomBooking.Domain.Entities;
 using ClassroomBooking.Domain.Entities.Enums;
 
 namespace ClassroomBooking.Application.DTOs.Responses;
 
-public sealed class UserDto
+public sealed class UserDto : IMapFrom<User>
 {
     [Required]
     public Guid Id { get; set; }

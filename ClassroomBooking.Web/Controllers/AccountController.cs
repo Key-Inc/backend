@@ -1,11 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
+using ClassroomBooking.Application.Features.Account.Commands.EditUser;
 using ClassroomBooking.Application.Features.Account.Commands.Login;
 using ClassroomBooking.Application.Features.Account.Commands.Register;
+using ClassroomBooking.Application.Features.Account.Queries.GetUser;
 using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
@@ -36,9 +40,13 @@ public sealed class AccountController : BaseController
 
     [HttpGet]
     [Route("profile")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<ActionResult<UserDto>> GetProfile()
     {
-        throw new NotImplementedException();
+        var getUserQuery = new GetUserQuery(UserId);
+        var userDto = await Mediator.Send(getUserQuery);
+
+        return Ok(userDto);
     }
 
     [HttpGet]
@@ -64,9 +72,13 @@ public sealed class AccountController : BaseController
 
     [HttpPut]
     [Route("profile")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<IActionResult> EditProfile(UserEditDto editDto)
     {
-        throw new NotImplementedException();
+        var editUserCommand = new EditUserCommand(UserId, editDto);
+        await Mediator.Send(editUserCommand);
+
+        return Ok();
     }
 
     [HttpPut]
