@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
+using ClassroomBooking.Application.Features.Account.Commands.EditUser;
 using ClassroomBooking.Application.Features.Account.Commands.Login;
 using ClassroomBooking.Application.Features.Account.Commands.Register;
 using ClassroomBooking.Application.Features.Account.Queries.GetUser;
@@ -71,9 +72,13 @@ public sealed class AccountController : BaseController
 
     [HttpPut]
     [Route("profile")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<IActionResult> EditProfile(UserEditDto editDto)
     {
-        throw new NotImplementedException();
+        var editUserCommand = new EditUserCommand(UserId, editDto);
+        await Mediator.Send(editUserCommand);
+
+        return Ok();
     }
 
     [HttpPut]
