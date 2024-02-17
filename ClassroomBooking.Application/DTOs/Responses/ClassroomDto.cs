@@ -12,7 +12,4 @@ public sealed class ClassroomDto
     
     [Required]
     public required int Building { get; set; }
-    
-    [Required]
-    public required string Address { get; set; }
 }
