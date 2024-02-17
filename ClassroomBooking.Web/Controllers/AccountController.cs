@@ -1,14 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
+using ClassroomBooking.Application.Features.Account.Commands.Login;
 using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
 
 public sealed class AccountController : BaseController
 {
+    public AccountController(IMediator mediator) : base(mediator) {}
+    
     [HttpPost]
     [Route("register")]
     public async Task<ActionResult<TokenResponseDto>> Register(UserRegisterDto registerDto)
@@ -20,7 +24,10 @@ public sealed class AccountController : BaseController
     [Route("login")]
     public async Task<ActionResult<TokenResponseDto>> LogIn(LoginCredentialsDto credentials)
     {
-        throw new NotImplementedException();
+        var loginCommand = new LoginCommand(credentials);
+        var tokenResponse = await Mediator.Send(loginCommand);
+
+        return Ok(tokenResponse);
     }
 
     [HttpGet]
