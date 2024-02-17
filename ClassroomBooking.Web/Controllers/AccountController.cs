@@ -2,12 +2,14 @@
 using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Application.Features.Account.Commands.EditUser;
+using ClassroomBooking.Application.Features.Account.Commands.EditUserRole;
 using ClassroomBooking.Application.Features.Account.Commands.Login;
 using ClassroomBooking.Application.Features.Account.Commands.Register;
 using ClassroomBooking.Application.Features.Account.Queries.GetRegistrationStatus;
 using ClassroomBooking.Application.Features.Account.Queries.GetUser;
 using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
+using ClassroomBooking.Web.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -88,9 +90,14 @@ public sealed class AccountController : BaseController
 
     [HttpPut]
     [Route("{userId:guid}/role")]
+    [RequiresRole(requiresRole: UserRole.Dean)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<IActionResult> EditUserRole(Guid userId, [FromQuery] [Required] UserRole userRole)
     {
-        throw new NotImplementedException();
+        var editUserRoleCommand = new EditUserRoleCommand(userId, userRole);
+        await Mediator.Send(editUserRoleCommand);
+
+        return Ok();
     }
 
     [HttpGet]
