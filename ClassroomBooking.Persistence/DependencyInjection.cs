@@ -23,6 +23,15 @@ public static class DependencyInjection
             context.Database.Migrate();
         }
     }
+    
+    public static void AddAutoMigration(this IServiceProvider services)
+    {
+        using (var scope = services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            context.Database.Migrate();
+        }
+    }
 
     private static void AddApplicationDbContext(this IServiceCollection services, IConfiguration configuration)
     {
