@@ -1,12 +1,15 @@
 ﻿using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
 
 public sealed class KeyController : BaseController
 {
+    public KeyController(IMediator mediator) : base(mediator) {}
+    
     [HttpGet]
     public async Task<ActionResult<IEnumerable<KeyFullDto>>> GetKeys([FromQuery] KeyStatus? keyStatus)
     {
