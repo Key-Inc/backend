@@ -4,4 +4,7 @@ using ClassroomBooking.Persistence.Contexts;
 
 namespace ClassroomBooking.Persistence.Repositories;
 
-internal sealed class UserRepository(ApplicationDbContext dbContext) : BaseRepository<User>(dbContext), IUserRepository {}
+internal sealed class UserRepository : BaseRepository<User>, IUserRepository
+{
+    public UserRepository(ApplicationDbContext dbContext) : base(dbContext) {}
+}
