@@ -11,8 +11,7 @@ public sealed class RequestController : BaseController
     [HttpGet]
     [Route("schedule")]
     public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetSchedule(
-        [FromQuery] int? classroomNumber,
-        [FromQuery] [DataType(DataType.Date)] DateTime? date)
+        [FromQuery] ScheduleSearchParameters searchParameters)
     {
         throw new NotImplementedException();
     }
