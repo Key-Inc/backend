@@ -21,5 +21,5 @@ public sealed class KeyRequestDto
     public required Guid UserId { get; set; }
     
     [Required]
-    public required int ClassroomNumber { get; set; }
+    public required Guid ClassroomId { get; set; }
 }
