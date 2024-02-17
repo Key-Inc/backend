@@ -4,6 +4,7 @@ using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Application.Features.Account.Commands.EditUser;
 using ClassroomBooking.Application.Features.Account.Commands.Login;
 using ClassroomBooking.Application.Features.Account.Commands.Register;
+using ClassroomBooking.Application.Features.Account.Queries.GetRegistrationStatus;
 using ClassroomBooking.Application.Features.Account.Queries.GetUser;
 using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
@@ -51,9 +52,13 @@ public sealed class AccountController : BaseController
 
     [HttpGet]
     [Route("registration-status")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<ActionResult<RequestStatus>> GetRegistrationStatus()
     {
-        throw new NotImplementedException();
+        var getRegistrationStatusQuery = new GetRegistrationStatusQuery(UserId);
+        var registrationStatus = await Mediator.Send(getRegistrationStatusQuery);
+
+        return Ok(registrationStatus);
     }
 
     [HttpPut]
