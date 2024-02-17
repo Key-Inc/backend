@@ -13,6 +13,4 @@ public sealed class KeyRequestSearchParameters : PaginationParameters
     public KeyRequestRole? Role { get; set; }
     
     public KeyRequestSorting? Sorting { get; set; }
-    
-    public string? Gender { get; set; }
 }
