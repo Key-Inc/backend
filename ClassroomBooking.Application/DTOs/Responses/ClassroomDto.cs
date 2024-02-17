@@ -2,11 +2,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ClassroomBooking.Application.DTOs.Responses;
 
-public class KeyDto
+public sealed class ClassroomDto
 {
     [Required]
     public required Guid Id { get; set; }
     
     [Required]
-    public required Guid ClassroomId { get; set; }
+    public required int Number { get; set; }
+    
+    [Required]
+    public required int Building { get; set; }
 }
