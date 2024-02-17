@@ -4,8 +4,10 @@ namespace ClassroomBooking.Application.DTOs.Requests;
 
 public sealed class ScheduleSearchParameters
 {
-    [DataType(DataType.Date)]
-    public DateTime? Date { get; set; }
+    [Required]
+    public required Guid ClassroomId { get; set; }
     
-    public int? ClassroomNumber { get; set; }
+    [Required]
+    [DataType(DataType.Date)]
+    public required DateTime Date { get; set; }
 }
