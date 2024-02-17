@@ -2,6 +2,7 @@
 using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Application.Features.Account.Commands.Login;
+using ClassroomBooking.Application.Features.Account.Commands.Register;
 using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
 using MediatR;
@@ -17,7 +18,10 @@ public sealed class AccountController : BaseController
     [Route("register")]
     public async Task<ActionResult<TokenResponseDto>> Register(UserRegisterDto registerDto)
     {
-        throw new NotImplementedException();
+        var registerCommand = new RegisterCommand(registerDto);
+        var tokenResponse = await Mediator.Send(registerCommand);
+
+        return Ok(tokenResponse);
     }
 
     [HttpPost]
