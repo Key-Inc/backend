@@ -5,9 +5,11 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ClassroomBooking.Infrastructure.Options.Configurations;
 
-internal sealed class ConfigureJwtBearerOptions(IOptions<JwtOptions> jwtOptions) : IConfigureNamedOptions<JwtBearerOptions>
+internal sealed class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions>
 {
-    private readonly JwtOptions _jwtOptions = jwtOptions.Value;
+    private readonly JwtOptions _jwtOptions;
+
+    public ConfigureJwtBearerOptions(IOptions<JwtOptions> jwtOptions) => _jwtOptions = jwtOptions.Value;
 
     public void Configure(string? name, JwtBearerOptions options) => Configure(options);
     
