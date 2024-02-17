@@ -15,8 +15,4 @@
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Services\Auth\" />
-    </ItemGroup>
-
 </Project>
