@@ -11,4 +11,8 @@ public sealed class UserEditDto
     [MaxLength(100)]
     [EmailAddress]
     public string? Email { get; set; }
+    
+    [MinLength(6)]
+    [MaxLength(100)]
+    public string? Password { get; set; }
 }   

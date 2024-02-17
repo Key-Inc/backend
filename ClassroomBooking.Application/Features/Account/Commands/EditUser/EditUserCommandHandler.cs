@@ -18,7 +18,11 @@ public sealed class EditUserCommandHandler : IRequestHandler<EditUserCommand>
         
         user.BirthDate = request.UserEdit.BirthDate;
         user.PhoneNumber = request.UserEdit.PhoneNumber;
+        
         if (request.UserEdit.Email != null) user.Email = request.UserEdit.Email;
+        
+        if (request.UserEdit.Password != null)
+            user.Password = BCrypt.Net.BCrypt.HashPassword(request.UserEdit.Password);
 
         await _userRepository.UpdateAsync(user);
     }
