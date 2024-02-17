@@ -6,8 +6,10 @@ namespace ClassroomBooking.Domain.Entities;
 public sealed class Key : BaseEntity
 {
     public required KeyStatus KeyStatus { get; set; }
-    public required int ClassroomNumber { get; set; }
 
     public User? User { get; set; }
     public Guid? UserId { get; set; }
+    
+    public Classroom? Classroom { get; set; }
+    public required Guid ClassroomId { get; set; }
 }
