@@ -3,4 +3,4 @@ using MediatR;
 
 namespace ClassroomBooking.Application.Features.Account.Queries.GetUser;
 
-public sealed record GetUserQuery(Guid UserId) : IRequest<UserDto>;
+public sealed record GetUserQuery(Guid UserId) : IRequest<UserFullDto>;

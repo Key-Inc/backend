@@ -7,7 +7,7 @@ using MediatR;
 
 namespace ClassroomBooking.Application.Features.Account.Queries.GetUser;
 
-public sealed class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDto>
+public sealed class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserFullDto>
 {
     private readonly IMapper _mapper;
     private readonly IUserRepository _userRepository;
@@ -18,12 +18,12 @@ public sealed class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDto>
         _userRepository = userRepository;
     }
     
-    public async Task<UserDto> Handle(GetUserQuery request, CancellationToken cancellationToken)
+    public async Task<UserFullDto> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetByIdAsync(request.UserId);
         if (user == null) throw new NotFoundException(nameof(User), request.UserId);
 
-        var userDto = _mapper.Map<UserDto>(user);
+        var userDto = _mapper.Map<UserFullDto>(user);
         return userDto;
     }
 }

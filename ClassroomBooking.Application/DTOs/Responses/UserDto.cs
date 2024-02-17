@@ -5,7 +5,7 @@ using ClassroomBooking.Domain.Entities.Enums;
 
 namespace ClassroomBooking.Application.DTOs.Responses;
 
-public sealed class UserDto : IMapFrom<User>
+public class UserDto : IMapFrom<User>
 {
     [Required]
     public Guid Id { get; set; }
@@ -25,6 +25,4 @@ public sealed class UserDto : IMapFrom<User>
     [MinLength(1)]
     [EmailAddress]
     public required string Email { get; set; }
-    
-    public UserRole? UserRole { get; set; }
 }

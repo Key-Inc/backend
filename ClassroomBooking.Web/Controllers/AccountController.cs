@@ -41,7 +41,7 @@ public sealed class AccountController : BaseController
     [HttpGet]
     [Route("profile")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public async Task<ActionResult<UserDto>> GetProfile()
+    public async Task<ActionResult<UserFullDto>> GetProfile()
     {
         var getUserQuery = new GetUserQuery(UserId);
         var userDto = await Mediator.Send(getUserQuery);
