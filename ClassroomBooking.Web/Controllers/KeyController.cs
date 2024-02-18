@@ -18,6 +18,8 @@ public sealed class KeyController : BaseController
     public KeyController(IMediator mediator) : base(mediator) {}
     
     [HttpGet]
+    [Authorize]
+    [RequiresRole(UserRole.Dean)]
     public async Task<ActionResult<IEnumerable<KeyFullDto>>> GetKeys([FromQuery] KeyStatus? keyStatus)
     {
         var getKeysQuery = new GetKeysQuery(keyStatus);
