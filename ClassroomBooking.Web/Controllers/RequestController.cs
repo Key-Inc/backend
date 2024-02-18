@@ -2,6 +2,7 @@
 using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Application.Features.Request.Commands.CreateRequest;
+using ClassroomBooking.Application.Features.Request.Queries.GetMyRequests;
 using ClassroomBooking.Web.Controllers.Base;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -25,7 +26,9 @@ public sealed class RequestController : BaseController
     [Route("my")]
     public async Task<ActionResult<IEnumerable<KeyRequestDto>>> GetMyRequests()
     {
-        throw new NotImplementedException();
+        var getMyRequests = new GetMyRequestsQuery(UserId);
+        var requests = await Mediator.Send(getMyRequests);
+        return Ok(requests);
     }
 
     [HttpGet]

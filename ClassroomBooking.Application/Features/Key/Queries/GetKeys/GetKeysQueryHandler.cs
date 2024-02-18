@@ -18,7 +18,7 @@ public sealed class GetKeysQueryHandler: IRequestHandler<GetKeysQuery, IEnumerab
 
     public async Task<IEnumerable<KeyFullDto>> Handle(GetKeysQuery request, CancellationToken cancellationToken)
     {
-        var keys = await _keyRepository.GetKeyByStatus(request.Status);
+        var keys = await _keyRepository.GetKeyByStatusAsync(request.Status);
         return _mapper.Map<IEnumerable<KeyFullDto>>(keys);
     }
 }

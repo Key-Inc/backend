@@ -34,7 +34,7 @@ public sealed class CreateRequestCommandHandler: IRequestHandler<CreateRequestCo
         var classroom = await _classroomRepository.GetByIdAsync(requestDto.ClassroomId);
         if (classroom == null) throw new NotFoundException(nameof(Classroom), requestDto.ClassroomId);
 
-        if (!await _requestRepository.IsDateRangeValid(requestDto.StartDate, requestDto.EndDate,
+        if (!await _requestRepository.IsDateRangeValidAsync(requestDto.StartDate, requestDto.EndDate,
                 requestDto.ClassroomId)) throw new BadRequestException("Time is already taken");
 
         var response = new KeyRequest

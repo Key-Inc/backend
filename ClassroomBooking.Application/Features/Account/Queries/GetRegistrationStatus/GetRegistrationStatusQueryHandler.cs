@@ -16,7 +16,7 @@ public sealed class GetRegistrationStatusQueryHandler : IRequestHandler<GetRegis
     
     public async Task<RequestStatus> Handle(GetRegistrationStatusQuery request, CancellationToken cancellationToken)
     {
-        var registrationRequest = await _registrationRequestRepository.GetByUserId(request.UserId);
+        var registrationRequest = await _registrationRequestRepository.GetByUserIdAsync(request.UserId);
         
         if (registrationRequest == null)
             throw new NotFoundException($"Registration request of user ({request.UserId}) was not wound");

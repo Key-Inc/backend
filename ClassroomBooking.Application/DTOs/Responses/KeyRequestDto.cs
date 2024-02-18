@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ClassroomBooking.Application.Common.Mappings;
+using ClassroomBooking.Domain.Entities;
 using ClassroomBooking.Domain.Entities.Enums;
 
 namespace ClassroomBooking.Application.DTOs.Responses;
 
-public class KeyRequestDto
+public class KeyRequestDto: IMapFrom<KeyRequest>
 {
     [Required]
     public required RequestStatus Status { get; set; }
