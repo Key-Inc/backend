@@ -1,6 +1,7 @@
 ﻿using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Application.Features.Key.Commands.GiveKey;
 using ClassroomBooking.Application.Features.Key.Commands.TakeKey;
+using ClassroomBooking.Application.Features.Key.Commands.TransferKey;
 using ClassroomBooking.Application.Features.Key.Queries.GetKeys;
 using ClassroomBooking.Application.Features.Key.Queries.GetMyKeys;
 using ClassroomBooking.Domain.Entities.Enums;
@@ -59,9 +60,12 @@ public sealed class KeyController : BaseController
     }
     
     [HttpPut]
+    [Authorize]
     [Route("{id:guid}/user/{userId:guid}/transfer")]
     public async Task<IActionResult> TransferRequest(Guid id, Guid userId)
     {
-        throw new NotImplementedException();
+        var transferKeyCommand = new TransferKeyCommand(id,UserId, userId);
+        await Mediator.Send(transferKeyCommand);
+        return Ok();
     }
 }
