@@ -20,7 +20,6 @@
 
     <ItemGroup>
       <Folder Include="Features\Key\Commands\" />
-      <Folder Include="Features\Key\Queries\GetMyKeys\" />
     </ItemGroup>
 
 </Project>

@@ -14,4 +14,9 @@ internal sealed class KeyRepository: BaseRepository<Key>, IKeyRepository
     {
         return await Entities.Where(k => status == null || k.KeyStatus == status).ToListAsync();
     }
+
+    public async Task<IEnumerable<Key>> GetKeyByUserId(Guid userId)
+    {
+        return await Entities.Where(k => k.UserId == userId).ToListAsync();
+    }
 }

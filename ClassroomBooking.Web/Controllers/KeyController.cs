@@ -1,5 +1,6 @@
 ﻿using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Application.Features.Key.Queries.GetKeys;
+using ClassroomBooking.Application.Features.Key.Queries.GetMyKeys;
 using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
 using ClassroomBooking.Web.Filters;
@@ -24,10 +25,13 @@ public sealed class KeyController : BaseController
     }
     
     [HttpGet]
+    [Authorize]
     [Route("my")]
     public async Task<ActionResult<IEnumerable<KeyDto>>> GetUserKeys()
     {
-        throw new NotImplementedException();
+        var getMyKeysQuery = new GetMyKeysQuery(UserId);
+        var keys = await Mediator.Send(getMyKeysQuery);
+        return Ok(keys);
     }
 
     [HttpPut]

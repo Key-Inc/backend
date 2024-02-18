@@ -7,4 +7,6 @@ namespace ClassroomBooking.Application.Common.Interfaces.Repositories;
 public interface IKeyRepository: IBaseRepository<Key>
 {
     Task<IEnumerable<Key>> GetKeyByStatus(KeyStatus? status);
+
+    Task<IEnumerable<Key>> GetKeyByUserId(Guid userId);
 }
