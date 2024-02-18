@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
+using ClassroomBooking.Application.Features.Request.Commands.CreateRequest;
 using ClassroomBooking.Web.Controllers.Base;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
@@ -34,9 +36,12 @@ public sealed class RequestController : BaseController
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> CreateKeyRequest(KeyRequestCreateDto requestCreateDto)
     {
-        throw new NotImplementedException();
+        var command = new CreateRequestCommand(requestCreateDto, UserId);
+        await Mediator.Send(command);
+        return Ok();
     }
 
     [HttpPut]
