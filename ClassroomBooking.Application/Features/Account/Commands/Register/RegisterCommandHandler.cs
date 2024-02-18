@@ -1,6 +1,7 @@
 using ClassroomBooking.Application.Common.Interfaces.Services;
 using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Domain.Entities;
+using ClassroomBooking.Domain.Entities.Enums;
 using MediatR;
 
 namespace ClassroomBooking.Application.Features.Account.Commands.Register;
@@ -20,7 +21,8 @@ public sealed class RegisterCommandHandler : IRequestHandler<RegisterCommand, To
             Gender = request.UserRegister.Gender,
             Email = request.UserRegister.Email,
             Password = request.UserRegister.Password,
-            PhoneNumber = request.UserRegister.PhoneNumber
+            PhoneNumber = request.UserRegister.PhoneNumber,
+            UserRole = UserRole.Admin
         };
 
         return await _authService.Register(user);
