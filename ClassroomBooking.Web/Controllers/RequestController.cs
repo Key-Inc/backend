@@ -2,6 +2,7 @@
 using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Application.Features.Request.Commands.CreateRequest;
+using ClassroomBooking.Application.Features.Request.Commands.DeleteMyRequest;
 using ClassroomBooking.Application.Features.Request.Queries.GetMyRequests;
 using ClassroomBooking.Web.Controllers.Base;
 using MediatR;
@@ -23,6 +24,7 @@ public sealed class RequestController : BaseController
     }
 
     [HttpGet]
+    [Authorize]
     [Route("my")]
     public async Task<ActionResult<IEnumerable<KeyRequestDto>>> GetMyRequests()
     {
@@ -62,9 +64,12 @@ public sealed class RequestController : BaseController
     }
 
     [HttpDelete]
+    [Authorize]
     [Route("{id:guid}/delete")]
     public async Task<IActionResult> DeleteRequest(Guid id)
     {
-        throw new NotImplementedException();
+        var deleteCommand = new DeleteMyRequestCommand(id, UserId);
+        await Mediator.Send(deleteCommand);
+        return Ok();
     }
 }

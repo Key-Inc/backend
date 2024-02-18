@@ -8,6 +8,9 @@ namespace ClassroomBooking.Application.DTOs.Responses;
 public class KeyRequestDto: IMapFrom<KeyRequest>
 {
     [Required]
+    public required Guid Id { get; set; }
+    
+    [Required]
     public required RequestStatus Status { get; set; }
     
     [Required]
