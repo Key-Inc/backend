@@ -1,6 +1,7 @@
 using ClassroomBooking.Application.Common.Interfaces.Services;
 using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Domain.Entities;
+using ClassroomBooking.Domain.Entities.Enums;
 using MediatR;
 
 namespace ClassroomBooking.Application.Features.Account.Commands.Register;

@@ -1,5 +1,6 @@
 using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
+using ClassroomBooking.Application.Features.Classroom.Queries.GetClassrooms;
 using ClassroomBooking.Web.Controllers.Base;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,8 @@ public sealed class ClassroomController : BaseController
     public async Task<ActionResult<ClassroomPagedListDto>> GetClassroomList(
         [FromQuery] ClassroomSearchParameters searchParameters)
     {
-        throw new NotImplementedException();
+        var getClassroomsQuery = new GetClassroomsQuery(searchParameters);
+        var classrooms = await Mediator.Send(getClassroomsQuery);
+        return Ok(classrooms);
     }
 }

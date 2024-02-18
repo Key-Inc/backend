@@ -9,8 +9,8 @@ internal sealed class RegistrationRequestRepository : BaseRepository<Registratio
 {
     public RegistrationRequestRepository(ApplicationDbContext dbContext) : base(dbContext) {}
 
-    public Task<RegistrationRequest?> GetByUserId(Guid userId)
+    public async Task<RegistrationRequest?> GetByUserId(Guid userId)
     {
-        return Entities.FirstOrDefaultAsync(request => request.UserId == userId);
+        return await Entities.FirstOrDefaultAsync(request => request.UserId == userId);
     }
 }
