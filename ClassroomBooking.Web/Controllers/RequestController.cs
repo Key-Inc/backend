@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
+using ClassroomBooking.Application.Features.Request.Commands.ApproveRequest;
 using ClassroomBooking.Application.Features.Request.Commands.CreateRequest;
 using ClassroomBooking.Application.Features.Request.Commands.DeleteMyRequest;
 using ClassroomBooking.Application.Features.Request.Queries.GetMyRequests;
+using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
+using ClassroomBooking.Web.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -50,10 +53,14 @@ public sealed class RequestController : BaseController
     }
 
     [HttpPut]
-    [Route(("{requestId:guid}/key/{keyId:guid}/approve"))]
-    public async Task<IActionResult> AcceptRequest(Guid requestId, Guid keyId)
+    [Route(("{id:guid}/approve"))]
+    [Authorize]
+    [RequiresRole(UserRole.Dean)]
+    public async Task<IActionResult> AcceptRequest(Guid id)
     {
-        throw new NotImplementedException();
+        var command = new ApproveRequestCommand(id);
+        await Mediator.Send(command);
+        return Ok();
     }
 
     [HttpPut]

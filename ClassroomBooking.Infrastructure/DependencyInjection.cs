@@ -1,7 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
 using ClassroomBooking.Application.Common.Interfaces.Services;
-using ClassroomBooking.Domain.Entities.Enums;
-using ClassroomBooking.Infrastructure.Models;
 using ClassroomBooking.Infrastructure.Options.Configurations;
 using ClassroomBooking.Infrastructure.Services.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
