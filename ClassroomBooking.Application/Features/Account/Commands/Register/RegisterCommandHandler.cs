@@ -21,8 +21,7 @@ public sealed class RegisterCommandHandler : IRequestHandler<RegisterCommand, To
             Gender = request.UserRegister.Gender,
             Email = request.UserRegister.Email,
             Password = request.UserRegister.Password,
-            PhoneNumber = request.UserRegister.PhoneNumber,
-            UserRole = UserRole.Admin
+            PhoneNumber = request.UserRegister.PhoneNumber
         };
 
         return await _authService.Register(user);
