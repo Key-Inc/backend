@@ -5,12 +5,12 @@ using MediatR;
 
 namespace ClassroomBooking.Application.Features.Key.Queries.GetKeys;
 
-public sealed class GetKeysHandler: IRequestHandler<GetKeysQuery, IEnumerable<KeyFullDto>>
+public sealed class GetKeysQueryHandler: IRequestHandler<GetKeysQuery, IEnumerable<KeyFullDto>>
 {
     private readonly IKeyRepository _keyRepository;
     private readonly IMapper _mapper;
 
-    public GetKeysHandler(IKeyRepository keyRepository, IMapper mapper)
+    public GetKeysQueryHandler(IKeyRepository keyRepository, IMapper mapper)
     {
         _keyRepository = keyRepository;
         _mapper = mapper;
