@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using AutoMapper;
 using ClassroomBooking.Application.Common.Mappings;
 using ClassroomBooking.Domain.Entities;
 

@@ -10,12 +10,15 @@ internal sealed class KeyRepository: BaseRepository<Key>, IKeyRepository
 {
     public KeyRepository(ApplicationDbContext dbContext) : base(dbContext) {}
 
-    public async Task<IEnumerable<Key>> GetKeyByStatus(KeyStatus? status)
+    public async Task<IEnumerable<Key>> GetKeyByStatusAsync(KeyStatus? status)
     {
-        return await Entities.Where(k => status == null || k.KeyStatus == status).ToListAsync();
+        return await Entities
+            .Where(k => status == null || k.KeyStatus == status)
+            .Include(k => k.User)
+            .ToListAsync();
     }
 
-    public async Task<IEnumerable<Key>> GetKeyByUserId(Guid userId)
+    public async Task<IEnumerable<Key>> GetKeyByUserIdAsync(Guid userId)
     {
         return await Entities.Where(k => k.UserId == userId).ToListAsync();
     }

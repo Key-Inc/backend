@@ -9,7 +9,7 @@ internal sealed class RegistrationRequestRepository : BaseRepository<Registratio
 {
     public RegistrationRequestRepository(ApplicationDbContext dbContext) : base(dbContext) {}
 
-    public async Task<RegistrationRequest?> GetByUserId(Guid userId)
+    public async Task<RegistrationRequest?> GetByUserIdAsync(Guid userId)
     {
         return await Entities.FirstOrDefaultAsync(request => request.UserId == userId);
     }
