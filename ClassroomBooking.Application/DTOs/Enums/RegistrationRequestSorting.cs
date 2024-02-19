@@ -3,7 +3,5 @@
 public enum RegistrationRequestSorting
 {
     CreateDesc,
-    CreateAsc,
-    AgeAsc,
-    AgeDesc
+    CreateAsc
 }
