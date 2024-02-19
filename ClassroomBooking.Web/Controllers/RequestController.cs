@@ -35,6 +35,8 @@ public sealed class RequestController : BaseController
     } 
     
     [HttpGet]
+    [Authorize]
+    [RequiresRole(UserRole.Student)]
     [Route("schedule")]
     public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetSchedule(
         [FromQuery] ScheduleSearchParameters searchParameters)
