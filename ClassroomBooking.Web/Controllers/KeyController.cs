@@ -29,6 +29,7 @@ public sealed class KeyController : BaseController
     
     [HttpGet]
     [Authorize]
+    [RequiresRole(UserRole.Student)]
     [Route("my")]
     public async Task<ActionResult<IEnumerable<KeyDto>>> GetUserKeys()
     {
@@ -61,6 +62,7 @@ public sealed class KeyController : BaseController
     
     [HttpPut]
     [Authorize]
+    [RequiresRole(UserRole.Student)]
     [Route("{id:guid}/user/{userId:guid}/transfer")]
     public async Task<IActionResult> TransferRequest(Guid id, Guid userId)
     {

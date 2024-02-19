@@ -24,6 +24,8 @@ public sealed class RequestController : BaseController
     
     [HttpGet]
     [Route("{id:guid}/overlapping")]
+    [Authorize]
+    [RequiresRole(UserRole.Dean)]
     public async Task<ActionResult<IEnumerable<KeyRequestFullDto>>> GetOverlappingRequests(Guid id)
     {
         var query = new GetOverlappingRequestQuery(id);
@@ -41,6 +43,7 @@ public sealed class RequestController : BaseController
 
     [HttpGet]
     [Authorize]
+    [RequiresRole(UserRole.Student)]
     [Route("my")]
     public async Task<ActionResult<IEnumerable<KeyRequestDto>>> GetMyRequests()
     {
@@ -58,6 +61,7 @@ public sealed class RequestController : BaseController
 
     [HttpPost]
     [Authorize]
+    [RequiresRole(UserRole.Student)]
     public async Task<IActionResult> CreateKeyRequest(KeyRequestCreateDto requestCreateDto)
     {
         var command = new CreateRequestCommand(requestCreateDto, UserId);
@@ -89,6 +93,7 @@ public sealed class RequestController : BaseController
 
     [HttpDelete]
     [Authorize]
+    [RequiresRole(UserRole.Student)]
     [Route("{id:guid}/delete")]
     public async Task<IActionResult> DeleteRequest(Guid id)
     {
