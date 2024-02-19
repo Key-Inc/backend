@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ClassroomBooking.Application.Features.Request.Queries.GetMyRequests;
 
-public class GetMyRequestsQueryHandler: IRequestHandler<GetMyRequestsQuery, IEnumerable<KeyRequestDto>>
+public sealed class GetMyRequestsQueryHandler: IRequestHandler<GetMyRequestsQuery, IEnumerable<KeyRequestDto>>
 {
     private readonly IKeyRequestRepository _requestRepository;
     private readonly IMapper _mapper;
