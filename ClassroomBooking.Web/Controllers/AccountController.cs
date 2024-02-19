@@ -101,12 +101,12 @@ public sealed class AccountController : BaseController
     }
 
     [HttpPut]
-    [Route("{userId:guid}/role")]
+    [Route("{editableUserId:guid}/role")]
     [RequiresRole(UserRole.Dean)]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> EditUserRole(Guid userId, [FromQuery] [Required] UserRole userRole)
+    public async Task<IActionResult> EditUserRole(Guid editableUserId, [FromQuery] [Required] UserRole userRole)
     {
-        var editUserRoleCommand = new EditUserRoleCommand(userId, userRole);
+        var editUserRoleCommand = new EditUserRoleCommand(UserId, editableUserId, userRole);
         await Mediator.Send(editUserRoleCommand);
 
         return Ok();
