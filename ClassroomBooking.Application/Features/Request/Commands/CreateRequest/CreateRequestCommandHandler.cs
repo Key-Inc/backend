@@ -3,14 +3,12 @@ using ClassroomBooking.Application.Common.Interfaces.Repositories;
 using ClassroomBooking.Domain.Entities;
 using ClassroomBooking.Domain.Entities.Enums;
 using MediatR;
+using static ClassroomBooking.Application.Features.Request.Constants.KeyRequestConstants;
 
 namespace ClassroomBooking.Application.Features.Request.Commands.CreateRequest;
 
 public sealed class CreateRequestCommandHandler: IRequestHandler<CreateRequestCommand>
 {
-    private static readonly TimeSpan MinPossibleStartTime = new TimeSpan(8, 0, 0);
-    private static readonly TimeSpan MaxPossibleEndTime =  new TimeSpan(21, 0, 0);
-    
     private readonly IKeyRequestRepository _requestRepository;
     private readonly IClassroomRepository _classroomRepository;
     

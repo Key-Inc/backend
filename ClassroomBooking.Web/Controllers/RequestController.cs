@@ -8,6 +8,7 @@ using ClassroomBooking.Application.Features.Request.Commands.DeleteMyRequest;
 using ClassroomBooking.Application.Features.Request.Commands.RejectRequest;
 using ClassroomBooking.Application.Features.Request.Queries.GetMyRequests;
 using ClassroomBooking.Application.Features.Request.Queries.GetOverlappingRequests;
+using ClassroomBooking.Application.Features.Request.Queries.GetSchedule;
 using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
 using ClassroomBooking.Web.Filters;
@@ -38,7 +39,9 @@ public sealed class RequestController : BaseController
     public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetSchedule(
         [FromQuery] ScheduleSearchParameters searchParameters)
     {
-        throw new NotImplementedException();
+        var query = new GetScheduleQuery(searchParameters.ClassroomId, searchParameters.Date);
+        var response = await Mediator.Send(query);
+        return Ok(response);
     }
 
     [HttpGet]

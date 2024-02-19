@@ -12,4 +12,6 @@ public interface IKeyRequestRepository : IBaseRepository<KeyRequest>
     Task<IEnumerable<KeyRequest>> GetOverlapping(KeyRequest request);
 
     Task<bool> IsDateRangeValidForRequest(KeyRequest request);
+
+    Task<List<KeyRequest>> GetSchedule(DateTime date, Guid classroomId);
 }
