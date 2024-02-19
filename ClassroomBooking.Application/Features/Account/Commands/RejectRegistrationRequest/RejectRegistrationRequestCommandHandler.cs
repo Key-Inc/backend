@@ -1,3 +1,4 @@
+using ClassroomBooking.Application.Common.Exceptions;
 using ClassroomBooking.Application.Common.Exceptions.Base;
 using ClassroomBooking.Application.Common.Interfaces.Repositories;
 using ClassroomBooking.Domain.Entities;
@@ -18,10 +19,10 @@ public sealed class RejectRegistrationRequestCommandHandler : IRequestHandler<Re
     public async Task Handle(RejectRegistrationRequestCommand request, CancellationToken cancellationToken)
     {
         var registrationRequest = await _registrationRequestRepository.GetByUserIdAsync(request.ApplicantId);
-        
-        if (registrationRequest == null) throw new NotFoundException(nameof(User), request.ApplicantId);
-        if (registrationRequest.Status != RequestStatus.UnderConsideration)
-            throw new BadRequestException($"Request of user ({request.ApplicantId}) has already been considered");
+
+        if (registrationRequest == null) throw new RegistrationRequestNotFoundException(request.ApplicantId);
+        if (registrationRequest.Status != RequestStatus.UnderConsideration) 
+            throw new RegistrationRequestConsideredException(request.ApplicantId);
 
         registrationRequest.Status = RequestStatus.Rejected;
         await _registrationRequestRepository.UpdateAsync(registrationRequest);
