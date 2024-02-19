@@ -1,3 +1,4 @@
+using ClassroomBooking.Application.Common.Exceptions;
 using ClassroomBooking.Application.Common.Exceptions.Base;
 using ClassroomBooking.Application.Common.Interfaces.Repositories;
 using ClassroomBooking.Domain.Entities;
@@ -13,12 +14,21 @@ public sealed class EditUserRoleCommandHandler : IRequestHandler<EditUserRoleCom
     
     public async Task Handle(EditUserRoleCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetByIdAsync(request.UserId);
+        var user = await GetUser(request.UserId);
+        if (user.UserRole < request.Role) throw new RoleLessException();
         
-        if (user == null) throw new NotFoundException(nameof(User), request.UserId);
-        if (user.UserRole == null) throw new BadRequestException($"User ({request.UserId}) is not approved");
+        var editableUser = await GetUser(request.EditableUserId);
+        if (editableUser.UserRole == null) throw new BadRequestException($"User ({request.UserId}) is not approved");
 
-        user.UserRole = request.Role;
+        editableUser.UserRole = request.Role;
         await _userRepository.UpdateAsync(user);
+    }
+
+    private async Task<User> GetUser(Guid userId)
+    {
+        var user = await _userRepository.GetByIdAsync(userId);
+        if (user == null) throw new UserNotFoundException(userId);
+
+        return user;
     }
 }
