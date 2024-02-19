@@ -11,7 +11,7 @@ public sealed class UserController : BaseController
     public UserController(IMediator mediator) : base(mediator) {}
     
     [HttpGet]
-    public async Task<ActionResult<UserPagedListDto>> GetUserList([FromQuery] UserSearchParameters searchParameters)
+    public async Task<ActionResult<PagedListDto<UserFullDto>>> GetUserList([FromQuery] UserSearchParameters searchParameters)
     {
         throw new NotImplementedException();
     }
