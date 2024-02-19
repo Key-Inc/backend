@@ -5,6 +5,7 @@ using ClassroomBooking.Application.Features.Account.Commands.EditUser;
 using ClassroomBooking.Application.Features.Account.Commands.EditUserRole;
 using ClassroomBooking.Application.Features.Account.Commands.Login;
 using ClassroomBooking.Application.Features.Account.Commands.Register;
+using ClassroomBooking.Application.Features.Account.Commands.RejectRegistrationRequest;
 using ClassroomBooking.Application.Features.Account.Queries.GetRegistrationStatus;
 using ClassroomBooking.Application.Features.Account.Queries.GetUser;
 using ClassroomBooking.Domain.Entities.Enums;
@@ -71,10 +72,15 @@ public sealed class AccountController : BaseController
     }
 
     [HttpPut]
-    [Route("{userId:guid}/reject")]
-    public async Task<IActionResult> RejectRegistrationRequest(Guid userId)
+    [Route("{applicantId:guid}/reject")]
+    [RequiresRole(UserRole.Dean)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> RejectRegistrationRequest(Guid applicantId)
     {
-        throw new NotImplementedException();
+        var rejectRegistrationRequestCommand = new RejectRegistrationRequestCommand(applicantId);
+        await Mediator.Send(rejectRegistrationRequestCommand);
+
+        return Ok();
     }
 
     [HttpPut]
@@ -90,7 +96,7 @@ public sealed class AccountController : BaseController
 
     [HttpPut]
     [Route("{userId:guid}/role")]
-    [RequiresRole(requiresRole: UserRole.Dean)]
+    [RequiresRole(UserRole.Dean)]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<IActionResult> EditUserRole(Guid userId, [FromQuery] [Required] UserRole userRole)
     {
