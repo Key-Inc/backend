@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ClassroomBooking.Application.Common.Exceptions.Base;
 using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Application.Features.Request.Commands.ApproveRequest;
@@ -6,6 +7,7 @@ using ClassroomBooking.Application.Features.Request.Commands.CreateRequest;
 using ClassroomBooking.Application.Features.Request.Commands.DeleteMyRequest;
 using ClassroomBooking.Application.Features.Request.Commands.RejectRequest;
 using ClassroomBooking.Application.Features.Request.Queries.GetMyRequests;
+using ClassroomBooking.Application.Features.Request.Queries.GetOverlappingRequests;
 using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
 using ClassroomBooking.Web.Filters;
@@ -18,6 +20,16 @@ namespace ClassroomBooking.Web.Controllers;
 public sealed class RequestController : BaseController
 {
     public RequestController(IMediator mediator) : base(mediator) {}
+    
+    
+    [HttpGet]
+    [Route("{id:guid}/overlapping")]
+    public async Task<ActionResult<IEnumerable<KeyRequestFullDto>>> GetOverlappingRequests(Guid id)
+    {
+        var query = new GetOverlappingRequestQuery(id);
+        var keyRequests = await Mediator.Send(query);
+        return Ok(keyRequests);
+    } 
     
     [HttpGet]
     [Route("schedule")]
