@@ -18,7 +18,10 @@ public sealed class RejectRegistrationRequestCommandHandler : IRequestHandler<Re
     public async Task Handle(RejectRegistrationRequestCommand request, CancellationToken cancellationToken)
     {
         var registrationRequest = await _registrationRequestRepository.GetByUserIdAsync(request.ApplicantId);
+        
         if (registrationRequest == null) throw new NotFoundException(nameof(User), request.ApplicantId);
+        if (registrationRequest.Status != RequestStatus.UnderConsideration)
+            throw new BadRequestException($"Request of user ({request.ApplicantId}) has already been considered");
 
         registrationRequest.Status = RequestStatus.Rejected;
         await _registrationRequestRepository.UpdateAsync(registrationRequest);
