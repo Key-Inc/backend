@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomBooking.Persistence.Repositories;
 
-internal class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+internal abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 {
     private readonly ApplicationDbContext _dbContext;
 
