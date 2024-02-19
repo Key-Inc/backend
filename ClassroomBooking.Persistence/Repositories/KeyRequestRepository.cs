@@ -14,9 +14,9 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
     {
         return await Entities
             .AllAsync(k => k.Status != RequestStatus.Accepted || k.ClassroomId != classroomId ||
-                            (k.IsRecurring != true && isRecurring != true && (k.EndDate < start || end < k.StartDate)) ||
+                            (k.IsRecurring != true && isRecurring != true && (k.EndDate <= start || end <= k.StartDate)) ||
                             ((k.IsRecurring == true || isRecurring == true) && (k.StartDate.DayOfWeek != start.DayOfWeek ||
-                                k.EndDate.TimeOfDay < start.TimeOfDay || end.TimeOfDay < k.StartDate.TimeOfDay)));
+                                k.EndDate.TimeOfDay <= start.TimeOfDay || end.TimeOfDay <= k.StartDate.TimeOfDay)));
     }
 
     public async Task<IEnumerable<KeyRequest>> GetByUserIdAsync(Guid userId)
@@ -30,9 +30,9 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
         var end = request.EndDate;
         return await Entities
             .Where(k => !(k.Id == request.Id || k.Status != RequestStatus.Accepted || k.ClassroomId != request.ClassroomId ||
-                           (k.IsRecurring != true && request.IsRecurring != true && (k.EndDate < start || end < k.StartDate)) ||
+                           (k.IsRecurring != true && request.IsRecurring != true && (k.EndDate <= start || end <= k.StartDate)) ||
                            ((k.IsRecurring == true || request.IsRecurring == true) && (k.StartDate.DayOfWeek != start.DayOfWeek ||
-                            k.EndDate.TimeOfDay < start.TimeOfDay || end.TimeOfDay < k.StartDate.TimeOfDay))))
+                            k.EndDate.TimeOfDay <= start.TimeOfDay || end.TimeOfDay <= k.StartDate.TimeOfDay))))
             .Include(k => k.User)
             .ToListAsync();
     }
@@ -43,8 +43,16 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
         var end = request.EndDate;
         return await Entities
             .AllAsync(k => k.Id == request.Id || k.Status != RequestStatus.Accepted || k.ClassroomId != request.ClassroomId ||
-                            (k.IsRecurring != true && request.IsRecurring != true && (k.EndDate < start || end < k.StartDate)) ||
+                            (k.IsRecurring != true && request.IsRecurring != true && (k.EndDate <= start || end <= k.StartDate)) ||
                             ((k.IsRecurring == true || request.IsRecurring == true) && (k.StartDate.DayOfWeek != start.DayOfWeek ||
-                                k.EndDate.TimeOfDay < start.TimeOfDay || end.TimeOfDay < k.StartDate.TimeOfDay)));
+                                k.EndDate.TimeOfDay <= start.TimeOfDay || end.TimeOfDay <= k.StartDate.TimeOfDay)));
+    }
+
+    public async Task<List<KeyRequest>> GetSchedule(DateTime date, Guid classroomId)
+    {
+        return await Entities
+            .Where(k => k.Status == RequestStatus.Accepted && ((k.StartDate.Year == date.Year && k.StartDate.Month == date.Month && k.StartDate.Day == date.Day) || (k.IsRecurring == true && k.StartDate.DayOfWeek == date.DayOfWeek)) && k.ClassroomId == classroomId)
+            .OrderBy(k => k.StartDate)
+            .ToListAsync();
     }
 }
