@@ -4,6 +4,7 @@ using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Application.Features.Request.Commands.ApproveRequest;
 using ClassroomBooking.Application.Features.Request.Commands.CreateRequest;
 using ClassroomBooking.Application.Features.Request.Commands.DeleteMyRequest;
+using ClassroomBooking.Application.Features.Request.Commands.RejectRequest;
 using ClassroomBooking.Application.Features.Request.Queries.GetMyRequests;
 using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
@@ -65,9 +66,13 @@ public sealed class RequestController : BaseController
 
     [HttpPut]
     [Route("{id:guid}/reject")]
+    [Authorize]
+    [RequiresRole(UserRole.Dean)]
     public async Task<IActionResult> RejectRequest(Guid id)
     {
-        throw new NotImplementedException();
+        var command = new RejectRequestCommand(id);
+        await Mediator.Send(command);
+        return Ok();
     }
 
     [HttpDelete]

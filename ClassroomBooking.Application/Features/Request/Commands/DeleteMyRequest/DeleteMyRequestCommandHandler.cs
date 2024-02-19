@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ClassroomBooking.Application.Features.Request.Commands.DeleteMyRequest;
 
-public class DeleteMyRequestCommandHandler: IRequestHandler<DeleteMyRequestCommand>
+public sealed class DeleteMyRequestCommandHandler: IRequestHandler<DeleteMyRequestCommand>
 {
     private readonly IKeyRequestRepository _requestRepository;
 

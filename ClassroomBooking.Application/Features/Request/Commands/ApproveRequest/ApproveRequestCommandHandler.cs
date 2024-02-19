@@ -6,7 +6,7 @@ using MediatR;
 
 namespace ClassroomBooking.Application.Features.Request.Commands.ApproveRequest;
 
-public class ApproveRequestCommandHandler: IRequestHandler<ApproveRequestCommand>
+public sealed class ApproveRequestCommandHandler: IRequestHandler<ApproveRequestCommand>
 {
     private readonly IKeyRequestRepository _requestRepository;
 
