@@ -13,4 +13,11 @@ internal sealed class RegistrationRequestRepository : BaseRepository<Registratio
     {
         return await Entities.FirstOrDefaultAsync(request => request.UserId == userId);
     }
+
+    public async Task<RegistrationRequest?> GetByUserIdIncludingUserAsync(Guid userId)
+    {
+        return await Entities
+            .Include(request => request.User)
+            .FirstOrDefaultAsync(request => request.UserId == userId);
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
+using ClassroomBooking.Application.Features.Account.Commands.ApproveRegistrationRequest;
 using ClassroomBooking.Application.Features.Account.Commands.EditUser;
 using ClassroomBooking.Application.Features.Account.Commands.EditUserRole;
 using ClassroomBooking.Application.Features.Account.Commands.Login;
@@ -65,10 +66,15 @@ public sealed class AccountController : BaseController
     }
 
     [HttpPut]
-    [Route("{userId:guid}/approve/")]
-    public async Task<IActionResult> AcceptRegistrationRequest(Guid userId, [FromQuery] [Required] UserRole userRole)
+    [Route("{applicantId:guid}/approve/")]
+    [RequiresRole(UserRole.Dean)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> AcceptRegistrationRequest(Guid applicantId, [FromQuery] [Required] UserRole applicantRole)
     {
-        throw new NotImplementedException();
+        var approveRegistrationRequestCommand = new ApproveRegistrationRequestCommand(UserId, applicantId, applicantRole);
+        await Mediator.Send(approveRegistrationRequestCommand);
+
+        return Ok();
     }
 
     [HttpPut]
