@@ -7,6 +7,7 @@ using ClassroomBooking.Application.Features.Account.Commands.EditUserRole;
 using ClassroomBooking.Application.Features.Account.Commands.Login;
 using ClassroomBooking.Application.Features.Account.Commands.Register;
 using ClassroomBooking.Application.Features.Account.Commands.RejectRegistrationRequest;
+using ClassroomBooking.Application.Features.Account.Queries.GetConsideringUsers;
 using ClassroomBooking.Application.Features.Account.Queries.GetRegistrationStatus;
 using ClassroomBooking.Application.Features.Account.Queries.GetUser;
 using ClassroomBooking.Domain.Entities.Enums;
@@ -114,9 +115,14 @@ public sealed class AccountController : BaseController
 
     [HttpGet]
     [Route("consideration")]
-    public async Task<ActionResult<RegistrationRequestPagedListDto>> GetRegistrationRequestList(
-        [FromQuery] RegistrationRequestSearchParameters parameters)
+    [RequiresRole(UserRole.Dean)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<ActionResult<PagedListDto<UserDto>>> GetRegistrationRequestList(
+        [FromQuery] RegistrationRequestSearchParameters searchParameters)
     {
-        throw new NotImplementedException();
+        var getConsideringUsersQuery = new GetConsideringUsersQuery(searchParameters);
+        var pagedList = await Mediator.Send(getConsideringUsersQuery);
+
+        return Ok(pagedList);
     }
 }
