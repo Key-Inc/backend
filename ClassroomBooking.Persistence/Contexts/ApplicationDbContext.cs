@@ -1,5 +1,6 @@
 using ClassroomBooking.Domain.Entities;
 using ClassroomBooking.Domain.Entities.Enums;
+using ClassroomBooking.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomBooking.Persistence.Contexts;
@@ -18,6 +19,7 @@ public sealed class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(builder);
 
+        builder.ApplyConfiguration(new UserConfiguration());
         var classrooms = GenerateClassrooms();
         builder.Entity<Classroom>().HasData(classrooms);
         builder.Entity<Key>().HasData(GenerateKeys(classrooms));
