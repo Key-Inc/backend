@@ -15,7 +15,7 @@ public sealed class UserRegisterDto
     [MaxLength(100)]
     public required string Password { get; set; }
     
-    public DateTime? BirthDate { get; set; }
+    public DateOnly? BirthDate { get; set; }
     
     [Required]
     public Gender Gender { get; set; }

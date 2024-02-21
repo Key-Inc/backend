@@ -5,18 +5,29 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ClassroomBooking.Persistence.Configurations;
 
-public sealed class UserConfiguration: IEntityTypeConfiguration<User>
+public sealed class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.HasData(new User
+        builder.HasData(
+            CreateUser(UserRole.Admin),
+            CreateUser(UserRole.Dean),
+            CreateUser(UserRole.Teacher),
+            CreateUser(UserRole.Student));
+    }
+
+    private static User CreateUser(UserRole role)
+    {
+        var name = role.ToString().ToLower();
+
+        return new User
         {
             Id = Guid.NewGuid(),
-            FullName = "admin",
+            FullName = name,
             Gender = Gender.Male,
-            Email = "admin@gmail.com",
-            Password = BCrypt.Net.BCrypt.HashPassword("admin"),
-            UserRole = UserRole.Admin
-        });
+            Email = $"{name}@gmail.com",
+            Password = BCrypt.Net.BCrypt.HashPassword(name),
+            UserRole = role
+        };
     }
 }

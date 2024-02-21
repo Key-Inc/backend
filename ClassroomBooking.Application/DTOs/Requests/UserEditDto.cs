@@ -4,7 +4,7 @@ namespace ClassroomBooking.Application.DTOs.Requests;
 
 public sealed class UserEditDto
 {
-    public DateTime? BirthDate { get; set; }
+    public DateOnly? BirthDate { get; set; }
     public string? PhoneNumber { get; set; }
     
     [MinLength(1)]

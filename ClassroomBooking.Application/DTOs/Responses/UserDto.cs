@@ -14,7 +14,7 @@ public class UserDto : IMapFrom<User>
     [MinLength(1)]
     public required string FullName { get; set; }
     
-    public DateTime? BirthDate { get; set; }
+    public DateOnly? BirthDate { get; set; }
     
     [Required]
     public Gender Gender { get; set; }
