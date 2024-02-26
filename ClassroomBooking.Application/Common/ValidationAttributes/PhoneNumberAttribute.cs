@@ -5,8 +5,8 @@ namespace ClassroomBooking.Application.Common.ValidationAttributes;
 
 public sealed partial class PhoneNumberAttribute : ValidationAttribute
 {
-    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext) =>
-        value != null && PhoneRegex().IsMatch((string)value)
+    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext) => 
+        value == null || PhoneRegex().IsMatch((string)value)
             ? ValidationResult.Success
             : new ValidationResult("Phone number is not a valid");
 
