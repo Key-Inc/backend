@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ClassroomBooking.Application.Common.ValidationAttributes;
 using ClassroomBooking.Domain.Entities.Enums;
 
 namespace ClassroomBooking.Application.DTOs.Requests;
@@ -20,6 +21,7 @@ public sealed class UserRegisterDto
     [Required]
     public Gender Gender { get; set; }
     
+    [PhoneNumber]
     public string? PhoneNumber { get; set; }
     
     [Required]

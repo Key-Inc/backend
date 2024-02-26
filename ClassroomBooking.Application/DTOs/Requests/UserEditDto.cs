@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ClassroomBooking.Application.Common.ValidationAttributes;
 
 namespace ClassroomBooking.Application.DTOs.Requests;
 
 public sealed class UserEditDto
 {
     public DateOnly? BirthDate { get; set; }
+    
+    [PhoneNumber]
     public string? PhoneNumber { get; set; }
     
     [MinLength(1)]
