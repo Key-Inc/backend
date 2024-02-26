@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using ClassroomBooking.Application.Common.Exceptions.Base;
-using ClassroomBooking.Application.DTOs.Requests;
+﻿using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Application.Features.Request.Commands.ApproveRequest;
 using ClassroomBooking.Application.Features.Request.Commands.CreateRequest;
 using ClassroomBooking.Application.Features.Request.Commands.DeleteMyRequest;
 using ClassroomBooking.Application.Features.Request.Commands.RejectRequest;
+using ClassroomBooking.Application.Features.Request.Queries.GetAllRequests;
 using ClassroomBooking.Application.Features.Request.Queries.GetMyRequests;
 using ClassroomBooking.Application.Features.Request.Queries.GetOverlappingRequests;
 using ClassroomBooking.Application.Features.Request.Queries.GetSchedule;
@@ -13,6 +12,7 @@ using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
 using ClassroomBooking.Web.Filters;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +21,6 @@ namespace ClassroomBooking.Web.Controllers;
 public sealed class RequestController : BaseController
 {
     public RequestController(IMediator mediator) : base(mediator) {}
-    
     
     [HttpGet]
     [Route("{id:guid}/overlapping")]
@@ -58,10 +57,15 @@ public sealed class RequestController : BaseController
     }
 
     [HttpGet]
-    public async Task<ActionResult<KeyRequestPagedListDto>> GetKeyRequestList(
+    [RequiresRole(UserRole.Dean)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<ActionResult<PagedListDto<KeyRequestFullDto>>> GetKeyRequestList(
         [FromQuery] KeyRequestSearchParameters parameters)
     {
-        throw new NotImplementedException();
+        var getAllRequestsQuery = new GetAllRequestsQuery(parameters);
+        var pagedList = await Mediator.Send(getAllRequestsQuery);
+
+        return Ok(pagedList);
     }
 
     [HttpPost]

@@ -23,6 +23,6 @@ public sealed class UserController : BaseController
         var getUserListQuery = new GetUserListQuery(searchParameters);
         var pagedList = await Mediator.Send(getUserListQuery);
 
-        return pagedList;
+        return Ok(pagedList);
     }
 }
