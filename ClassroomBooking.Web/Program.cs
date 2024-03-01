@@ -33,7 +33,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseExceptionHandling();
-
+app.UseCors();
 app.MapControllers();
 
 app.Run();

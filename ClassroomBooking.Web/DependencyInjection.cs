@@ -11,6 +11,17 @@ public static class DependencyInjection
             .AddJsonOptions(config => config.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         
         services.AddMiddlewares();
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(
+                policy =>
+                {
+                    policy
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+        });
     }
 
     private static void AddMiddlewares(this IServiceCollection services)
