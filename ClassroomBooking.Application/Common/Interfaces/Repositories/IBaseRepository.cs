@@ -9,4 +9,5 @@ public interface IBaseRepository<T> where T : BaseEntity
     Task DeleteAsync(T entity);
     Task UpdateAsync(T entity);
     Task<T?> GetByIdAsync(Guid id);
+    Task AddEntitiesAsync(IEnumerable<T> entities);
 }

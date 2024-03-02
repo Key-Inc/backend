@@ -5,7 +5,7 @@ namespace ClassroomBooking.Application.Common.Interfaces.Repositories;
 
 public interface IKeyRequestRepository : IBaseRepository<KeyRequest>
 {
-    Task<bool> IsDateRangeValidAsync(DateTime start, DateTime end, bool isRecurring, Guid classroomId);
+    Task<bool> IsDateRangeValidAsync(DateTime start, DateTime end, Guid classroomId);
 
     Task<IEnumerable<KeyRequest>> GetByUserIdAsync(Guid userId);
 

@@ -32,4 +32,10 @@ internal abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEnt
         await _dbContext.Set<T>().AddAsync(entity);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task AddEntitiesAsync(IEnumerable<T> entities)
+    {
+        await _dbContext.Set<T>().AddRangeAsync(entities);
+        await _dbContext.SaveChangesAsync();
+    }
 }
