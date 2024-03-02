@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using ClassroomBooking.Application.Common.Exceptions;
 using ClassroomBooking.Application.Common.Exceptions.Base;
 using ClassroomBooking.Application.Common.Interfaces.Repositories;
 using ClassroomBooking.Application.DTOs.Enums;
 using ClassroomBooking.Application.DTOs.Responses;
+using ClassroomBooking.Domain.Entities.Enums;
 using MediatR;
 using static ClassroomBooking.Application.Features.Request.Constants.KeyRequestConstants;
 
@@ -13,20 +15,24 @@ public sealed class GetScheduleQueryHandler: IRequestHandler<GetScheduleQuery, I
     private readonly IMapper _mapper;
     private readonly IKeyRequestRepository _requestRepository;
     private readonly IClassroomRepository _classroomRepository;
+    private readonly IUserRepository _userRepository;
 
-    public GetScheduleQueryHandler(IMapper mapper, IKeyRequestRepository requestRepository, IClassroomRepository classroomRepository)
+    public GetScheduleQueryHandler(IMapper mapper, IKeyRequestRepository requestRepository, IClassroomRepository classroomRepository, IUserRepository userRepository)
     {
         _mapper = mapper;
         _requestRepository = requestRepository;
         _classroomRepository = classroomRepository;
+        _userRepository = userRepository;
     }
 
     public async Task<IEnumerable<ScheduleDto>> Handle(GetScheduleQuery request, CancellationToken cancellationToken)
     {
+        var user = await _userRepository.GetByIdAsync(request.UserId);
         var classroom = await _classroomRepository.GetByIdAsync(request.ClassroomId);
         if (classroom == null) throw new NotFoundException(nameof(Classroom), request.ClassroomId);
-
-        var requests = await _requestRepository.GetSchedule(request.Date, request.ClassroomId);
+        if (user?.UserRole == null) throw new UserNotFoundException(request.UserId);
+        
+        var requests = await _requestRepository.GetScheduleAsync(request.Date, request.ClassroomId, user.UserRole.Value);
         var scheduleBusyTime = _mapper.Map<List<ScheduleDto>>(requests);
         var result = new List<ScheduleDto>();
         

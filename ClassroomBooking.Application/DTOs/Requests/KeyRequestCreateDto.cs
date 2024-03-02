@@ -10,8 +10,7 @@ public sealed class KeyRequestCreateDto
     [Required]
     public required DateTime EndDate { get; set; }
     
-    [Required]
-    public required bool IsRecurring { get; set; }
+    public DateOnly? EndDateOfRecurrence { get; set; }
     
     [Required]
     public required Guid ClassroomId { get; set; }

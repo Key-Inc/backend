@@ -40,7 +40,7 @@ public sealed class RequestController : BaseController
     public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetSchedule(
         [FromQuery] ScheduleSearchParameters searchParameters)
     {
-        var query = new GetScheduleQuery(searchParameters.ClassroomId, searchParameters.Date);
+        var query = new GetScheduleQuery(searchParameters.ClassroomId, searchParameters.Date, UserId);
         var response = await Mediator.Send(query);
         return Ok(response);
     }
@@ -82,9 +82,9 @@ public sealed class RequestController : BaseController
     [Route(("{id:guid}/approve"))]
     [Authorize]
     [RequiresRole(UserRole.Dean)]
-    public async Task<IActionResult> AcceptRequest(Guid id)
+    public async Task<IActionResult> AcceptRequest(Guid id, [FromBody] ForceConfirmationDto forceConfirmationDto)
     {
-        var command = new ApproveRequestCommand(id);
+        var command = new ApproveRequestCommand(id, forceConfirmationDto.ForceConfirmation);
         await Mediator.Send(command);
         return Ok();
     }

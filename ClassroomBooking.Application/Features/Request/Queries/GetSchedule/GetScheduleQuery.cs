@@ -3,4 +3,4 @@ using MediatR;
 
 namespace ClassroomBooking.Application.Features.Request.Queries.GetSchedule;
 
-public sealed record GetScheduleQuery(Guid ClassroomId, DateTime Date): IRequest<IEnumerable<ScheduleDto>>;
+public sealed record GetScheduleQuery(Guid ClassroomId, DateTime Date, Guid UserId): IRequest<IEnumerable<ScheduleDto>>;
