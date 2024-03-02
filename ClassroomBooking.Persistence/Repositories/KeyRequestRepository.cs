@@ -26,9 +26,15 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
     {
         var start = request.StartDate;
         var end = request.EndDate;
+        DateTime? endOfRecurrence = request.EndDateOfRecurrence == null ? null : DateTime.SpecifyKind(request.EndDateOfRecurrence.Value.ToDateTime(TimeOnly.MaxValue), DateTimeKind.Utc);
         return await Entities
             .Where(k => !(k.Id == request.Id || k.Status != RequestStatus.Accepted || k.ClassroomId != request.ClassroomId ||
-                           k.EndDate <= start || end <= k.StartDate))
+                          (endOfRecurrence == null && (k.EndDate <= start || end <= k.StartDate)) || 
+                          (endOfRecurrence != null && 
+                           (start >= k.EndDate || k.StartDate >= endOfRecurrence || 
+                            k.StartDate.DayOfWeek != start.DayOfWeek ||  
+                            k.EndDate.TimeOfDay <= start.TimeOfDay ||
+                            end.TimeOfDay <= k.StartDate.TimeOfDay))))
             .Include(k => k.User)
             .ToListAsync();
     }
@@ -37,9 +43,12 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
     {
         var start = request.StartDate;
         var end = request.EndDate;
+        DateTime? endOfRecurrence = request.EndDateOfRecurrence == null ? null : DateTime.SpecifyKind(request.EndDateOfRecurrence.Value.ToDateTime(TimeOnly.MaxValue), DateTimeKind.Utc);
         return await Entities
             .AllAsync(k => k.Id == request.Id || k.Status != RequestStatus.Accepted || k.ClassroomId != request.ClassroomId ||
-                            k.EndDate <= start || end <= k.StartDate);
+                            (endOfRecurrence == null && (k.EndDate <= start || end <= k.StartDate)) ||
+                            (endOfRecurrence != null && (start >= k.EndDate || k.StartDate >= endOfRecurrence ||
+                             k.StartDate.DayOfWeek != start.DayOfWeek ||  k.EndDate.TimeOfDay <= start.TimeOfDay || end.TimeOfDay <= k.StartDate.TimeOfDay)));
     }
 
     public async Task<List<KeyRequest>> GetSchedule(DateTime date, Guid classroomId, UserRole role)

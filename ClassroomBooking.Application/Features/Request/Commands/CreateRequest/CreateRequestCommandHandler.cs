@@ -26,7 +26,7 @@ public sealed class CreateRequestCommandHandler: IRequestHandler<CreateRequestCo
     {
         var requestDto = request.RequestDto;
         
-        if (requestDto.StartDate.ToUniversalTime() < DateTime.UtcNow)
+        if (requestDto.StartDate < DateTime.Now)
         {
             throw new BadRequestException("Start date can't be less than today");
         }
@@ -42,7 +42,7 @@ public sealed class CreateRequestCommandHandler: IRequestHandler<CreateRequestCo
             throw new BadRequestException("Invalid date range");
         
         if (!(requestDto.EndDateOfRecurrence == null || 
-              requestDto.EndDate <= requestDto.EndDateOfRecurrence?.ToDateTime(new TimeOnly(23,59,59))))
+              requestDto.EndDate <= requestDto.EndDateOfRecurrence?.ToDateTime(TimeOnly.MaxValue)))
         {
             throw new BadRequestException("Invalid booking recurrence range");
         }

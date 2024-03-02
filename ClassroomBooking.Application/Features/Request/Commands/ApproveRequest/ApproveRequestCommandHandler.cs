@@ -28,10 +28,12 @@ public sealed class ApproveRequestCommandHandler: IRequestHandler<ApproveRequest
             throw new BadRequestException($"Request with id={keyRequest.Id} can't be approved");
         
         keyRequest.Status = RequestStatus.Accepted;
-        
-        await _requestRepository.UpdateAsync(keyRequest);
 
-        if (keyRequest.EndDateOfRecurrence == null) return;
+        if (keyRequest.EndDateOfRecurrence == null)
+        {
+            await _requestRepository.UpdateAsync(keyRequest);
+            return;
+        }
         
         var keyRequests = new List<KeyRequest>();
         
