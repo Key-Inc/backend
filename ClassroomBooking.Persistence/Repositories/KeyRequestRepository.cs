@@ -53,7 +53,7 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
 
     public async Task<List<KeyRequest>> GetSchedule(DateTime date, Guid classroomId, UserRole role)
     {
-        if (role == UserRole.Student){
+        if (role == UserRole.Student) {
             return await Entities
                 .Where(k => k.Status == RequestStatus.Accepted
                             && k.StartDate.Year == date.Year

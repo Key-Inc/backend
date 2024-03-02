@@ -31,13 +31,7 @@ public sealed class CreateRequestCommandHandler: IRequestHandler<CreateRequestCo
             throw new BadRequestException("Start date can't be less than today");
         }
         
-        if (requestDto.StartDate > requestDto.EndDate)
-            throw new BadRequestException("End date can't be less than start date");
-        
-        if (requestDto.StartDate == requestDto.EndDate)
-            throw new BadRequestException("End date can't be equal to start date");
-        
-        if (requestDto.StartDate.Date != requestDto.EndDate.Date ||
+        if (requestDto.StartDate > requestDto.EndDate || requestDto.StartDate == requestDto.EndDate || requestDto.StartDate.Date != requestDto.EndDate.Date ||
             requestDto.StartDate.TimeOfDay < MinPossibleStartTime || requestDto.EndDate.TimeOfDay > MaxPossibleEndTime)
             throw new BadRequestException("Invalid date range");
         

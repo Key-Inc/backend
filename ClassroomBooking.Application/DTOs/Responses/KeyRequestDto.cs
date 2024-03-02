@@ -21,4 +21,6 @@ public class KeyRequestDto: IMapFrom<KeyRequest>
     
     [Required]
     public required Guid ClassroomId { get; set; }
+    
+    public DateOnly? EndDateOfRecurrence { get; set; }
 }
