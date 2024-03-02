@@ -41,6 +41,7 @@ public sealed class ApproveRequestCommandHandler: IRequestHandler<ApproveRequest
         }
         
         var keyRequests = new List<KeyRequest>();
+        keyRequest.EndDateOfRecurrence = null;
         
         for (var i = DateOnly.FromDateTime(keyRequest.StartDate).AddDays(NumberOfDaysInAWeek); i <= keyRequest.EndDateOfRecurrence; i = i.AddDays(NumberOfDaysInAWeek))
         {
