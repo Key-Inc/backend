@@ -51,7 +51,6 @@ public sealed class ApproveRequestCommandHandler: IRequestHandler<ApproveRequest
                 ClassroomId = keyRequest.ClassroomId,
                 UserId = keyRequest.UserId,
                 Status = RequestStatus.Accepted,
-                EndDateOfRecurrence = keyRequest.EndDateOfRecurrence
             });
         }
 
