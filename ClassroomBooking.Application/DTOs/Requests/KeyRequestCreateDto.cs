@@ -5,13 +5,9 @@ namespace ClassroomBooking.Application.DTOs.Requests;
 public sealed class KeyRequestCreateDto
 {
     [Required]
-    public required DateTime StartDate { get; set; }
+    public required DateTimeRangeDto BookingTime { get; set; }
     
-    [Required]
-    public required DateTime EndDate { get; set; }
-    
-    [Required]
-    public required bool IsRecurring { get; set; }
+    public DateOnlyRangeDto? BookingRecurrence { get; set; }
     
     [Required]
     public required Guid ClassroomId { get; set; }

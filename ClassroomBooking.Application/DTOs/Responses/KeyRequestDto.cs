@@ -20,8 +20,5 @@ public class KeyRequestDto: IMapFrom<KeyRequest>
     public required DateTime EndDate { get; set; }
     
     [Required]
-    public required bool IsRecurring { get; set; }
-    
-    [Required]
     public required Guid ClassroomId { get; set; }
 }
