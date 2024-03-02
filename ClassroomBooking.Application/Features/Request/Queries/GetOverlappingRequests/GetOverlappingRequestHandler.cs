@@ -27,7 +27,7 @@ public sealed class GetOverlappingRequestHandler: IRequestHandler<GetOverlapping
         if (keyRequest.Status == RequestStatus.Accepted)
             throw new BadRequestException($"Request with id={keyRequest.Id} can't be overlapping");
 
-        var keyRequests = await _requestRepository.GetOverlapping(keyRequest);
+        var keyRequests = await _requestRepository.GetOverlappingAsync(keyRequest);
 
         return _mapper.Map<IEnumerable<KeyRequestFullDto>>(keyRequests);
     }

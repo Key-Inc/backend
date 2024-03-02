@@ -23,8 +23,13 @@ public sealed class ApproveRequestCommandHandler: IRequestHandler<ApproveRequest
 
         if (keyRequest.Status == RequestStatus.Accepted)
             throw new BadRequestException($"Request with id={keyRequest.Id} has have been approved");
+
+        if (request.ForceConfirmation)
+        {
+            await _requestRepository.RejectRequestsAsync(await _requestRepository.GetOverlappingAsync(keyRequest));
+        }
         
-        if (!await _requestRepository.IsDateRangeValidForRequest(keyRequest))
+        else if (!await _requestRepository.IsDateRangeValidForRequestAsync(keyRequest))
             throw new BadRequestException($"Request with id={keyRequest.Id} can't be approved");
         
         keyRequest.Status = RequestStatus.Accepted;

@@ -38,4 +38,9 @@ internal abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEnt
         await _dbContext.Set<T>().AddRangeAsync(entities);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task SaveChangeAsync()
+    {
+        await _dbContext.SaveChangesAsync();
+    }
 }

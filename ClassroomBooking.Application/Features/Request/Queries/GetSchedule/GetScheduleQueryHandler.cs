@@ -32,7 +32,7 @@ public sealed class GetScheduleQueryHandler: IRequestHandler<GetScheduleQuery, I
         if (classroom == null) throw new NotFoundException(nameof(Classroom), request.ClassroomId);
         if (user?.UserRole == null) throw new UserNotFoundException(request.UserId);
         
-        var requests = await _requestRepository.GetSchedule(request.Date, request.ClassroomId, user.UserRole.Value);
+        var requests = await _requestRepository.GetScheduleAsync(request.Date, request.ClassroomId, user.UserRole.Value);
         var scheduleBusyTime = _mapper.Map<List<ScheduleDto>>(requests);
         var result = new List<ScheduleDto>();
         

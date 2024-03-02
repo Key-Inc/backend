@@ -10,9 +10,11 @@ public interface IKeyRequestRepository : IBaseRepository<KeyRequest>
 
     Task<IEnumerable<KeyRequest>> GetByUserIdAsync(Guid userId);
 
-    Task<IEnumerable<KeyRequest>> GetOverlapping(KeyRequest request);
+    Task<IEnumerable<KeyRequest>> GetOverlappingAsync(KeyRequest request);
 
-    Task<bool> IsDateRangeValidForRequest(KeyRequest request);
+    Task<bool> IsDateRangeValidForRequestAsync(KeyRequest request);
 
-    Task<List<KeyRequest>> GetSchedule(DateTime date, Guid classroomId, UserRole role);
+    Task<List<KeyRequest>> GetScheduleAsync(DateTime date, Guid classroomId, UserRole role);
+
+    Task RejectRequestsAsync(IEnumerable<KeyRequest> requests);
 }

@@ -22,7 +22,7 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
         return await Entities.Where(k => k.UserId == userId).ToListAsync();
     }
 
-    public async Task<IEnumerable<KeyRequest>> GetOverlapping(KeyRequest request)
+    public async Task<IEnumerable<KeyRequest>> GetOverlappingAsync(KeyRequest request)
     {
         var start = request.StartDate;
         var end = request.EndDate;
@@ -39,7 +39,7 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
             .ToListAsync();
     }
 
-    public async Task<bool> IsDateRangeValidForRequest(KeyRequest request)
+    public async Task<bool> IsDateRangeValidForRequestAsync(KeyRequest request)
     {
         var start = request.StartDate;
         var end = request.EndDate;
@@ -51,7 +51,7 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
                              k.StartDate.DayOfWeek != start.DayOfWeek ||  k.EndDate.TimeOfDay <= start.TimeOfDay || end.TimeOfDay <= k.StartDate.TimeOfDay)));
     }
 
-    public async Task<List<KeyRequest>> GetSchedule(DateTime date, Guid classroomId, UserRole role)
+    public async Task<List<KeyRequest>> GetScheduleAsync(DateTime date, Guid classroomId, UserRole role)
     {
         if (role == UserRole.Student) {
             return await Entities
@@ -71,5 +71,14 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
                         && k.ClassroomId == classroomId && k.User != null && k.User.UserRole != UserRole.Student)
             .OrderBy(k => k.StartDate)
             .ToListAsync();
+    }
+
+    public async Task RejectRequestsAsync(IEnumerable<KeyRequest> requests)
+    {
+        foreach (var request in requests)
+        {
+            request.Status = RequestStatus.Rejected;
+        }
+        await SaveChangeAsync();
     }
 }
