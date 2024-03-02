@@ -40,7 +40,7 @@ public sealed class RequestController : BaseController
     public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetSchedule(
         [FromQuery] ScheduleSearchParameters searchParameters)
     {
-        var query = new GetScheduleQuery(searchParameters.ClassroomId, searchParameters.Date);
+        var query = new GetScheduleQuery(searchParameters.ClassroomId, searchParameters.Date, UserId);
         var response = await Mediator.Send(query);
         return Ok(response);
     }

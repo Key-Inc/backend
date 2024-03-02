@@ -42,12 +42,25 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
                             k.EndDate <= start || end <= k.StartDate);
     }
 
-    public async Task<List<KeyRequest>> GetSchedule(DateTime date, Guid classroomId)
+    public async Task<List<KeyRequest>> GetSchedule(DateTime date, Guid classroomId, UserRole role)
     {
+        if (role == UserRole.Student){
+            return await Entities
+                .Where(k => k.Status == RequestStatus.Accepted
+                            && k.StartDate.Year == date.Year
+                            && k.StartDate.Month == date.Month
+                            && k.StartDate.Day == date.Day
+                            && k.ClassroomId == classroomId)
+                .OrderBy(k => k.StartDate)
+                .ToListAsync();
+        }
         return await Entities
-            .Where(k => k.Status == RequestStatus.Accepted && k.StartDate.Year == date.Year && k.StartDate.Month == date.Month && k.StartDate.Day == date.Day && k.ClassroomId == classroomId)
+            .Where(k => k.Status == RequestStatus.Accepted
+                        && k.StartDate.Year == date.Year
+                        && k.StartDate.Month == date.Month
+                        && k.StartDate.Day == date.Day
+                        && k.ClassroomId == classroomId && k.User != null && k.User.UserRole != UserRole.Student)
             .OrderBy(k => k.StartDate)
             .ToListAsync();
     }
-    
 }

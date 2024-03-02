@@ -1,4 +1,5 @@
 ﻿using ClassroomBooking.Domain.Entities;
+using ClassroomBooking.Domain.Entities.Enums;
 using MediatR.NotificationPublishers;
 
 namespace ClassroomBooking.Application.Common.Interfaces.Repositories;
@@ -13,5 +14,5 @@ public interface IKeyRequestRepository : IBaseRepository<KeyRequest>
 
     Task<bool> IsDateRangeValidForRequest(KeyRequest request);
 
-    Task<List<KeyRequest>> GetSchedule(DateTime date, Guid classroomId);
+    Task<List<KeyRequest>> GetSchedule(DateTime date, Guid classroomId, UserRole role);
 }
