@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using MediatR;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers.Base;
