@@ -6,6 +6,20 @@ using ClassroomBooking.Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+const string myAllowSpecificOrigins = "AppCors";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: myAllowSpecificOrigins,
+        policy =>
+        {
+            policy
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddApplicationLayer();
 builder.Services.AddPersistenceLayer(builder.Configuration);
 builder.Services.AddInfrastructureLayer();
@@ -22,6 +36,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseCors(myAllowSpecificOrigins);
 app.Services.AddAutoMigration();
 
 // Configure the HTTP request pipeline.
