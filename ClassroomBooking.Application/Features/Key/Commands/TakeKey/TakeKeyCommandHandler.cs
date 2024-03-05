@@ -1,5 +1,6 @@
 ﻿using ClassroomBooking.Application.Common.Exceptions.Base;
 using ClassroomBooking.Application.Common.Interfaces.Repositories;
+using ClassroomBooking.Domain.Entities.Enums;
 using MediatR;
 
 namespace ClassroomBooking.Application.Features.Key.Commands.TakeKey;
@@ -23,6 +24,7 @@ public class TakeKeyCommandHandler: IRequestHandler<TakeKeyCommand>
             throw new BadRequestException($"The key with id={request.KeyId} is already in the dean's office");
 
         key.UserId = null;
+        key.KeyStatus = KeyStatus.InDeanOffice;
 
         await _keyRepository.UpdateAsync(key);
     }

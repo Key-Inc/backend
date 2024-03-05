@@ -28,6 +28,8 @@ public class GiveKeyCommandHandler: IRequestHandler<GiveKeyCommand>
             throw new BadRequestException($"User with id={request.UserId} already has key with id={request.KeyId}");
         
         key.UserId = request.UserId;
+        key.KeyStatus = KeyStatus.InPossession;
+        
         await _keyRepository.UpdateAsync(key);
     }
 }
