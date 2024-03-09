@@ -50,4 +50,7 @@ if (app.Environment.IsDevelopment())
 app.UseExceptionHandling();
 app.MapControllers();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.Run();
