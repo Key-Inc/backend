@@ -37,6 +37,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseCors(myAllowSpecificOrigins);
+
 app.Services.AddAutoMigration();
 
 // Configure the HTTP request pipeline.
@@ -48,7 +49,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseExceptionHandling();
-app.UseCors(myAllowSpecificOrigins);
 app.MapControllers();
 
 app.Run();
