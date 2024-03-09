@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
 
-[EnableCors("AppCors")]
 public sealed class KeyController : BaseController
 {
     public KeyController(IMediator mediator) : base(mediator) {}

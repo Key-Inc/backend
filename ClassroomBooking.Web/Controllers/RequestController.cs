@@ -19,7 +19,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
 
-[EnableCors("AppCors")]
 public sealed class RequestController : BaseController
 {
     public RequestController(IMediator mediator) : base(mediator) {}
