@@ -21,7 +21,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
 
-[EnableCors("MyCors")]
+[EnableCors("AppCors")]
 public sealed class AccountController : BaseController
 {
     public AccountController(IMediator mediator) : base(mediator) {}
