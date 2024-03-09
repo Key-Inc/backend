@@ -3,10 +3,12 @@ using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Application.Features.Classroom.Queries.GetClassrooms;
 using ClassroomBooking.Web.Controllers.Base;
 using MediatR;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
 
+[EnableCors("MyCors")]
 public sealed class ClassroomController : BaseController
 {
     public ClassroomController(IMediator mediator) : base(mediator) {}

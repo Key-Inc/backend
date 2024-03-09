@@ -14,10 +14,12 @@ using ClassroomBooking.Web.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
 
+[EnableCors("MyCors")]
 public sealed class RequestController : BaseController
 {
     public RequestController(IMediator mediator) : base(mediator) {}

@@ -9,10 +9,12 @@ using ClassroomBooking.Web.Controllers.Base;
 using ClassroomBooking.Web.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
 
+[EnableCors("MyCors")]
 public sealed class KeyController : BaseController
 {
     public KeyController(IMediator mediator) : base(mediator) {}
