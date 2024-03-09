@@ -13,13 +13,14 @@ public static class DependencyInjection
         services.AddMiddlewares();
         services.AddCors(options =>
         {
-            options.AddDefaultPolicy(
+            options.AddPolicy(
+                "MyCors",
                 policy =>
                 {
                     policy
                         .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
                 });
         });
     }

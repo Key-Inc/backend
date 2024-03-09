@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ClassroomBooking.Web.Controllers.Base;
 
 [ApiController]
-[EnableCors]
+[EnableCors("MyCors")]
 [Route("api/[controller]")]
 public abstract class BaseController : ControllerBase
 {
