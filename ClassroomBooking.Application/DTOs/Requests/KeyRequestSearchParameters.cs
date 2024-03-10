@@ -5,6 +5,8 @@ namespace ClassroomBooking.Application.DTOs.Requests;
 
 public sealed class KeyRequestSearchParameters : PaginationParameters
 {
+    public RequestStatus? Status { get; set; }
+    
     public DateTime? MinDate { get; set; }
     
     public DateTime? MaxDate { get; set; }

@@ -51,6 +51,9 @@ public sealed class GetAllRequestsQueryHandler : IRequestHandler<GetAllRequestsQ
         IQueryable<KeyRequest> requests,
         KeyRequestSearchParameters parameters)
     {
+        if (parameters.Status != null)
+            requests = requests.Where(request => request.Status == parameters.Status);
+        
         if (parameters.MinDate != null)
             requests = requests.Where(request => request.CreateTime >= parameters.MinDate);
 
