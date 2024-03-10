@@ -14,12 +14,16 @@ internal sealed class KeyRepository: BaseRepository<Key>, IKeyRepository
     {
         return await Entities
             .Where(k => status == null || k.KeyStatus == status)
+            .Include(k => k.Classroom)
             .Include(k => k.User)
             .ToListAsync();
     }
 
     public async Task<IEnumerable<Key>> GetKeyByUserIdAsync(Guid userId)
     {
-        return await Entities.Where(k => k.UserId == userId).ToListAsync();
+        return await Entities
+            .Where(k => k.UserId == userId)
+            .Include(k => k.Classroom)
+            .ToListAsync();
     }
 }

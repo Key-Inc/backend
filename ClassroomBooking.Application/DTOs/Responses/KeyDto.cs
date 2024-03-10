@@ -11,5 +11,5 @@ public class KeyDto: IMapFrom<Key>
     public required Guid Id { get; set; }
     
     [Required]
-    public required Guid ClassroomId { get; set; }
+    public ClassroomDto? Classroom { get; set; }
 }
