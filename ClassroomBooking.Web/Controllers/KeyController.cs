@@ -1,10 +1,12 @@
-﻿using ClassroomBooking.Application.DTOs.Responses;
+﻿using ClassroomBooking.Application.DTOs.Requests;
+using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Application.Features.Key.Commands.GiveKey;
 using ClassroomBooking.Application.Features.Key.Commands.RejectTransferKeyRequest;
 using ClassroomBooking.Application.Features.Key.Commands.TakeKey;
 using ClassroomBooking.Application.Features.Key.Commands.TransferKey;
 using ClassroomBooking.Application.Features.Key.Queries.GetKeys;
 using ClassroomBooking.Application.Features.Key.Queries.GetMyKeys;
+using ClassroomBooking.Application.Features.Key.Queries.GetTransferKeyRequests;
 using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
 using ClassroomBooking.Web.Filters;
@@ -40,6 +42,19 @@ public sealed class KeyController : BaseController
         var keys = await Mediator.Send(getMyKeysQuery);
         return Ok(keys);
     }
+    
+    [HttpGet]
+    [Authorize]
+    [RequiresRole(UserRole.Student)]
+    [Route("transfer-requests")]
+    public async Task<ActionResult<PagedListDto<TransferKeyRequestDto>>> GetTransferRequests(
+        [FromQuery] TransferKeyRequestSearchParameters parameters)
+    {
+        var getTransferKeyRequestsQuery = new GetTransferKeyRequestsQuery(UserId, parameters);
+        var pagedList = await Mediator.Send(getTransferKeyRequestsQuery);
+
+        return Ok(pagedList);
+    }
 
     [HttpPut]
     [Authorize]
@@ -66,7 +81,7 @@ public sealed class KeyController : BaseController
     [HttpPut]
     [Authorize]
     [RequiresRole(UserRole.Student)]
-    [Route("{id:guid}/reject")]
+    [Route("{id:guid}/reject-transfer")]
     public async Task<IActionResult> RejectTransferRequest(Guid id)
     {
         var rejectTransferKeyRequestCommand = new RejectTransferKeyRequestCommand(UserId, id);
