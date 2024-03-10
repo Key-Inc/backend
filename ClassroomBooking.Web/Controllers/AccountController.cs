@@ -9,6 +9,7 @@ using ClassroomBooking.Application.Features.Account.Commands.Register;
 using ClassroomBooking.Application.Features.Account.Commands.RejectRegistrationRequest;
 using ClassroomBooking.Application.Features.Account.Queries.GetConsideringUsers;
 using ClassroomBooking.Application.Features.Account.Queries.GetRegistrationStatus;
+using ClassroomBooking.Application.Features.Account.Queries.GetRole;
 using ClassroomBooking.Application.Features.Account.Queries.GetUser;
 using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
@@ -125,5 +126,15 @@ public sealed class AccountController : BaseController
         var pagedList = await Mediator.Send(getConsideringUsersQuery);
 
         return Ok(pagedList);
+    }
+
+    [HttpGet]
+    [Route("role")]
+    [Authorize]
+    public async Task<ActionResult<UserRole?>> GetRole()
+    {
+        var query = new GetRoleQuery(UserId);
+        var role = await Mediator.Send(query);
+        return Ok(role);
     }
 }
