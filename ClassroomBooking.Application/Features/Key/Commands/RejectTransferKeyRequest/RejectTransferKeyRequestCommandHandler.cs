@@ -17,11 +17,7 @@ public sealed class RejectTransferKeyRequestCommandHandler : IRequestHandler<Rej
 
     public async Task Handle(RejectTransferKeyRequestCommand request, CancellationToken cancellationToken)
     {
-        var transferRequest = await _transferKeyRequestRepository.Entities
-            .FirstOrDefaultAsync(req =>
-                req.RecipientId == request.UserId && req.KeyId == request.KeyId &&
-                req.Status == RequestStatus.UnderConsideration, cancellationToken: cancellationToken);
-        
+        var transferRequest = await _transferKeyRequestRepository.GetByRecipientIdAndKeyId(request.UserId, request.KeyId);
         if (transferRequest == null) 
             throw new NotFoundException($"The request under consideration to transfer the key ({request.KeyId}) was not found");
 
