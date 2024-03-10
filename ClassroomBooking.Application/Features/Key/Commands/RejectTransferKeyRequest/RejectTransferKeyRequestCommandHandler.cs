@@ -2,6 +2,7 @@ using ClassroomBooking.Application.Common.Exceptions.Base;
 using ClassroomBooking.Application.Common.Interfaces.Repositories;
 using ClassroomBooking.Domain.Entities.Enums;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomBooking.Application.Features.Key.Commands.RejectTransferKeyRequest;
 
@@ -18,7 +19,7 @@ public sealed class RejectTransferKeyRequestCommandHandler : IRequestHandler<Rej
     {
         var transferRequest = await _transferKeyRequestRepository.GetByRecipientIdAndKeyId(request.UserId, request.KeyId);
         if (transferRequest == null) 
-            throw new NotFoundException($"The request to transfer the key ({request.KeyId}) was not found");
+            throw new NotFoundException($"The request under consideration to transfer the key ({request.KeyId}) was not found");
 
         transferRequest.Status = RequestStatus.Rejected;
         await _transferKeyRequestRepository.UpdateAsync(transferRequest);
