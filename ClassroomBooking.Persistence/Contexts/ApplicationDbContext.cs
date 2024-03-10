@@ -11,6 +11,7 @@ public sealed class ApplicationDbContext : DbContext
     public DbSet<User> Users { get; init; }
     public DbSet<Classroom> Classrooms { get; init; }
     public DbSet<KeyRequest> KeyRequests { get; init; }
+    public DbSet<TransferKeyRequest> TransferKeyRequests { get; init; }
     public DbSet<RegistrationRequest> RegistrationRequests { get; init; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
