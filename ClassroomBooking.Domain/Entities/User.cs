@@ -14,4 +14,6 @@ public sealed class User : BaseEntity
     public UserRole? UserRole { get; set; }
 
     public IEnumerable<KeyRequest>? Requests { get; set; }
+    public IEnumerable<TransferKeyRequest>? TransferKeyRequests { get; set; }
+    public IEnumerable<TransferKeyRequest>? MyTransferKeyRequests { get; set; }
 }

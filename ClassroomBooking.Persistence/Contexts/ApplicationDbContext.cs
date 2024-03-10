@@ -21,6 +21,8 @@ public sealed class ApplicationDbContext : DbContext
         base.OnModelCreating(builder);
 
         builder.ApplyConfiguration(new UserConfiguration());
+        builder.ApplyConfiguration(new TransferKeyRequestConfiguration());
+        
         var classrooms = GenerateClassrooms();
         builder.Entity<Classroom>().HasData(classrooms);
         builder.Entity<Key>().HasData(GenerateKeys(classrooms));
