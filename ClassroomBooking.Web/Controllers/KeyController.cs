@@ -1,5 +1,6 @@
 ﻿using ClassroomBooking.Application.DTOs.Requests;
 using ClassroomBooking.Application.DTOs.Responses;
+using ClassroomBooking.Application.Features.Key.Commands.ApproveTransferKeyRequest;
 using ClassroomBooking.Application.Features.Key.Commands.GiveKey;
 using ClassroomBooking.Application.Features.Key.Commands.RejectTransferKeyRequest;
 using ClassroomBooking.Application.Features.Key.Commands.TakeKey;
@@ -11,9 +12,7 @@ using ClassroomBooking.Domain.Entities.Enums;
 using ClassroomBooking.Web.Controllers.Base;
 using ClassroomBooking.Web.Filters;
 using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomBooking.Web.Controllers;
@@ -86,6 +85,18 @@ public sealed class KeyController : BaseController
     {
         var rejectTransferKeyRequestCommand = new RejectTransferKeyRequestCommand(UserId, id);
         await Mediator.Send(rejectTransferKeyRequestCommand);
+
+        return Ok();
+    }
+    
+    [HttpPut]
+    [Authorize]
+    [RequiresRole(UserRole.Student)]
+    [Route("{id:guid}/approve-transfer")]
+    public async Task<IActionResult> ApproveTransferRequest(Guid id)
+    {
+        var approveTransferKeyRequestCommand = new ApproveTransferKeyRequestCommand(UserId, id);
+        await Mediator.Send(approveTransferKeyRequestCommand);
 
         return Ok();
     }
