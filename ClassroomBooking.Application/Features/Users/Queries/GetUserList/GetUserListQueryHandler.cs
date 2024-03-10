@@ -19,7 +19,7 @@ public sealed class GetUserListQueryHandler : IRequestHandler<GetUserListQuery, 
     
     public async Task<PagedListDto<UserFullDto>> Handle(GetUserListQuery request, CancellationToken cancellationToken)
     {
-        var users = _userRepository.Entities;
+        var users = _userRepository.Entities.Where(user => user.UserRole != null && user.Id != request.UserId);
 
         if (request.SearchParameters.NameQuery != null)
             users = users.Where(user => user.FullName.ToUpper().Contains(request.SearchParameters.NameQuery.ToUpper()));
