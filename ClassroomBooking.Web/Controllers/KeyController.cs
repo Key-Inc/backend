@@ -61,13 +61,13 @@ public sealed class KeyController : BaseController
         return Ok();
     }
     
-    [HttpPut]
+    [HttpPost]
     [Authorize]
     [RequiresRole(UserRole.Student)]
     [Route("{id:guid}/user/{userId:guid}/transfer")]
     public async Task<IActionResult> TransferRequest(Guid id, Guid userId)
     {
-        var transferKeyCommand = new TransferKeyCommand(id,UserId, userId);
+        var transferKeyCommand = new TransferKeyCommand(id, UserId, userId);
         await Mediator.Send(transferKeyCommand);
         return Ok();
     }
