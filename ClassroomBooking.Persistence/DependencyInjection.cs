@@ -1,4 +1,5 @@
 using ClassroomBooking.Application.Common.Interfaces.Repositories;
+using ClassroomBooking.Domain.Entities;
 using ClassroomBooking.Persistence.Contexts;
 using ClassroomBooking.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -37,5 +38,6 @@ public static class DependencyInjection
         services.AddScoped<IKeyRepository, KeyRepository>();
         services.AddScoped<IClassroomRepository, ClassroomRepository>();
         services.AddScoped<IKeyRequestRepository, KeyRequestRepository>();
+        services.AddScoped<ITransferKeyRequestRepository, TransferKeyRequestRepository>();
     }
 }
