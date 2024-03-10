@@ -19,7 +19,10 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
 
     public async Task<IEnumerable<KeyRequest>> GetByUserIdAsync(Guid userId)
     {
-        return await Entities.Where(k => k.UserId == userId).ToListAsync();
+        return await Entities
+            .Where(k => k.UserId == userId)
+            .Include(k => k.Classroom)
+            .ToListAsync();
     }
 
     public async Task<IEnumerable<KeyRequest>> GetOverlappingAsync(KeyRequest request)
@@ -36,6 +39,7 @@ internal sealed class KeyRequestRepository: BaseRepository<KeyRequest>, IKeyRequ
                             k.EndDate.TimeOfDay <= start.TimeOfDay ||
                             end.TimeOfDay <= k.StartDate.TimeOfDay))))
             .Include(k => k.User)
+            .Include(k => k.Classroom)
             .ToListAsync();
     }
 

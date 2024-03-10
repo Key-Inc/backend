@@ -23,7 +23,9 @@ public sealed class GetAllRequestsQueryHandler : IRequestHandler<GetAllRequestsQ
     
     public async Task<PagedListDto<KeyRequestFullDto>> Handle(GetAllRequestsQuery request, CancellationToken cancellationToken)
     {
-        IQueryable<KeyRequest> keyRequests = _keyRequestRepository.Entities.Include(keyRequest => keyRequest.User);
+        IQueryable<KeyRequest> keyRequests = _keyRequestRepository.Entities
+            .Include(keyRequest => keyRequest.User)
+            .Include(keyRequest => keyRequest.Classroom);
 
         keyRequests = GetFilteredRequests(keyRequests, request.SearchParameters);
         keyRequests = GetSortedRequests(keyRequests, request.SearchParameters.Sorting);

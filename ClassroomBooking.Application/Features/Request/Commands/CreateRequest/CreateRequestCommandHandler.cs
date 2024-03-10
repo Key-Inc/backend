@@ -26,7 +26,7 @@ public sealed class CreateRequestCommandHandler: IRequestHandler<CreateRequestCo
     {
         var requestDto = request.RequestDto;
         
-        if (requestDto.StartDate < DateTime.Now)
+        if (requestDto.StartDate.Date < DateTime.Now.Date)
         {
             throw new BadRequestException("Start date can't be less than today");
         }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ClassroomBooking.Application.Common.ValidationAttributes;
 
 namespace ClassroomBooking.Application.DTOs.Requests;
 
