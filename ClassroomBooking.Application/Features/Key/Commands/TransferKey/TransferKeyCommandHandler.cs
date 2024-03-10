@@ -1,6 +1,7 @@
 ﻿using ClassroomBooking.Application.Common.Exceptions.Base;
 using ClassroomBooking.Application.Common.Interfaces.Repositories;
 using ClassroomBooking.Domain.Entities;
+using ClassroomBooking.Domain.Entities.Enums;
 using MediatR;
 
 namespace ClassroomBooking.Application.Features.Key.Commands.TransferKey;
@@ -28,7 +29,8 @@ public class TransferKeyCommandHandler: IRequestHandler<TransferKeyCommand>
         var transferRequest = new TransferKeyRequest
         {
             KeyId = request.KeyId,
-            RecipientId = request.UserId
+            RecipientId = request.UserId,
+            Status = RequestStatus.UnderConsideration
         };
         
         await _transferKeyRequestRepository.AddAsync(transferRequest);

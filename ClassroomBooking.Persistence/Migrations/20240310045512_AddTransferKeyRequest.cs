@@ -587,12 +587,14 @@ namespace ClassroomBooking.Persistence.Migrations
                 name: "TransferKeyRequests",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     KeyId = table.Column<Guid>(type: "uuid", nullable: false),
-                    RecipientId = table.Column<Guid>(type: "uuid", nullable: false)
+                    RecipientId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TransferKeyRequests", x => new { x.KeyId, x.RecipientId });
+                    table.PrimaryKey("PK_TransferKeyRequests", x => x.Id);
                     table.ForeignKey(
                         name: "FK_TransferKeyRequests_Keys_KeyId",
                         column: x => x.KeyId,
@@ -612,61 +614,61 @@ namespace ClassroomBooking.Persistence.Migrations
                 columns: new[] { "Id", "Building", "CreateTime", "Number" },
                 values: new object[,]
                 {
-                    { new Guid("029da668-f86f-4a64-8d8a-75cbd02423d8"), 1, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9860), 200 },
-                    { new Guid("02c16dfc-9c2f-4e6c-984a-254f6cd26936"), 2, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9960), 206 },
-                    { new Guid("054e02f5-3be1-426b-8560-a4bd02d83cbf"), 3, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(40), 208 },
-                    { new Guid("06961358-d364-4e65-96c7-1a2f53da9d68"), 5, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(80), 201 },
-                    { new Guid("0e195743-b407-4155-a25b-38cbf726985b"), 1, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9930), 204 },
-                    { new Guid("0f821ebe-5456-466c-b394-e28b21c5ebe6"), 1, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9920), 201 },
-                    { new Guid("1816ade5-714e-4ea5-9aba-49a4ec7dbe13"), 5, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(100), 206 },
-                    { new Guid("1ce6eb0a-5591-4fe0-aa83-9be6c4bb97bb"), 4, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(70), 206 },
-                    { new Guid("1dfd674f-0859-417b-9c47-ddc4fde08545"), 3, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(40), 209 },
-                    { new Guid("231c731c-7f71-4c00-bccf-5c2c64f03a1e"), 2, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9970), 209 },
-                    { new Guid("2897600a-13e1-4b98-9a8b-43659909b1b3"), 1, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9920), 203 },
-                    { new Guid("2fa9409e-311b-47c8-a06e-ddb5bb3bb99d"), 4, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(80), 209 },
-                    { new Guid("317f7a6c-cddb-4ff0-b655-770709f7bfba"), 5, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(100), 209 },
-                    { new Guid("3b0848ff-9e77-4665-a605-a53a309f6e7a"), 2, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9950), 202 },
-                    { new Guid("3c0c19e8-2fe4-4193-b1d4-cca242feb570"), 5, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(100), 208 },
-                    { new Guid("3cef97ab-c08c-4876-af22-e7627e319ec4"), 2, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9950), 201 },
-                    { new Guid("40470fb9-ac7b-46f0-9bc0-43a0d4f4478e"), 3, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(10), 201 },
-                    { new Guid("455f64ad-143d-473f-82ba-5c808560e872"), 5, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(100), 207 },
-                    { new Guid("47bb6675-0d23-4528-952e-ceb046e3ee62"), 5, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(90), 204 },
-                    { new Guid("486ccb32-1f38-4f10-ab7a-7203744b55c4"), 3, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(20), 204 },
-                    { new Guid("4ee853a1-6ce0-48a7-9b0e-e30ff051ea3d"), 2, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9960), 203 },
-                    { new Guid("53f2b763-76cd-4a18-acba-1ea1caf460fe"), 3, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(30), 206 },
-                    { new Guid("561e6743-fef8-42ca-84d6-c71a1d35f227"), 1, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9940), 207 },
-                    { new Guid("5cc6aeb7-f5b3-4f51-9be7-7f37b196d9ef"), 2, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9970), 208 },
-                    { new Guid("5e888a85-d674-4727-b3d9-e8641ff157a9"), 3, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(30), 205 },
-                    { new Guid("645daf2c-0788-465a-98f2-443ced657d4b"), 1, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9950), 210 },
-                    { new Guid("6597fc3b-4b6b-4ef1-94bc-63699d7f1f79"), 1, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9940), 206 },
-                    { new Guid("66149d1f-9f3e-4bbd-9ac6-743d7a6afdc6"), 2, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9950), 200 },
-                    { new Guid("69e95ee8-af8b-47eb-a6a1-34cb92ff098d"), 3, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(50), 210 },
-                    { new Guid("6ac86a87-6b39-4a94-b8f9-4b261a35a18d"), 4, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(60), 202 },
-                    { new Guid("727e8eda-113b-4628-8ffa-4b268e675b32"), 5, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(90), 203 },
-                    { new Guid("854e9792-2c57-4707-8be4-398dece1c835"), 1, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9930), 205 },
-                    { new Guid("89d89b7a-0a09-44b2-881c-9cc0a42180e2"), 4, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(60), 203 },
-                    { new Guid("911c73c4-95ba-4133-8617-7c934c6b36db"), 3, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(10), 203 },
-                    { new Guid("97184f0a-1433-4675-b37b-99aaa84ec966"), 4, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(50), 200 },
-                    { new Guid("97d832c6-1230-4c5b-9105-04aabf9c67a9"), 5, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(110), 210 },
-                    { new Guid("9ac76204-9c43-4758-ba85-709599d5c086"), 3, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc), 200 },
-                    { new Guid("a46220a7-64fc-493d-babb-a5c548d11f95"), 4, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(50), 201 },
-                    { new Guid("a911f444-5d22-40ab-9592-f16bad08ad6d"), 4, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(60), 204 },
-                    { new Guid("aed7f9e3-a88c-481e-884c-41059113f307"), 1, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9940), 209 },
-                    { new Guid("bd83aec2-58bf-4468-a282-9060c840ecc8"), 4, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(60), 205 },
-                    { new Guid("c63e6bd0-e712-48e5-86ad-364a46a9cf95"), 1, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9940), 208 },
-                    { new Guid("c8c873e7-669a-46d9-9406-513456192bfa"), 3, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(40), 207 },
-                    { new Guid("cac074ab-0c73-440f-b83e-25dc5b0df244"), 5, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(90), 202 },
-                    { new Guid("cdb41023-c1d3-4560-9f33-a1f7c60a0ebc"), 4, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(80), 210 },
-                    { new Guid("d03ef224-e56a-4915-b328-0c6361eb2c66"), 2, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9960), 205 },
-                    { new Guid("d1e3f3d7-675d-48b5-b0ea-bead6faf4f01"), 4, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(70), 208 },
-                    { new Guid("d392cc41-e63e-48ac-be89-a6a825ece3fb"), 5, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(90), 205 },
-                    { new Guid("dc74b82b-a82b-44cd-819d-fd1c0beda725"), 5, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(80), 200 },
-                    { new Guid("dd69139d-5456-4725-9285-8cd4bda63203"), 3, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(10), 202 },
-                    { new Guid("e55d21d9-572e-4646-911c-44f9e7a12456"), 2, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9960), 204 },
-                    { new Guid("ea59bbe5-027a-468b-8836-3ce0b42782c3"), 4, new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(70), 207 },
-                    { new Guid("ed6e064a-9231-4d9f-ab95-d828f6ee35d5"), 2, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9960), 207 },
-                    { new Guid("fac3a3e8-b15c-40e0-a871-3d0f7e5f94b3"), 1, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9920), 202 },
-                    { new Guid("fc86dc15-4d97-436e-9902-3d0128afb605"), 2, new DateTime(2024, 3, 10, 3, 57, 34, 588, DateTimeKind.Utc).AddTicks(9970), 210 }
+                    { new Guid("01a67120-ada5-412c-9b5e-6a335c3098e0"), 3, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2680), 203 },
+                    { new Guid("04d8b6f4-24c1-4c97-82f3-2bc3fef36bee"), 3, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2700), 206 },
+                    { new Guid("0609beb8-1053-4f57-a9c0-03e466e8909c"), 1, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2620), 210 },
+                    { new Guid("0b1d3b4d-760d-4c6f-bf44-6c910e86c027"), 5, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2750), 200 },
+                    { new Guid("18817dac-d617-45f0-b1d2-62c4cde557ed"), 2, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2620), 200 },
+                    { new Guid("18bd34a0-89b6-4dc6-9975-f23458cdd890"), 1, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2590), 202 },
+                    { new Guid("1ad2ca85-c6db-49db-b522-0dab1891dd72"), 4, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2720), 201 },
+                    { new Guid("30237486-9607-4979-9da5-db262720ce31"), 3, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2710), 208 },
+                    { new Guid("373a09d3-b5b2-4968-b07a-1d930aa72f08"), 3, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2680), 201 },
+                    { new Guid("3b8f3f67-5d08-4bbb-80b1-3ead9bb443de"), 3, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2690), 204 },
+                    { new Guid("3ea7bd90-029d-41ba-9564-36c42513df85"), 4, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2730), 206 },
+                    { new Guid("3eabeb07-60dd-4b6f-82d4-087ac46ad779"), 1, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2610), 209 },
+                    { new Guid("42038e4c-0271-4889-847f-b73f928fe5d9"), 5, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2770), 209 },
+                    { new Guid("429fce3c-9bfe-4123-8698-b53cfd99be24"), 5, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2750), 201 },
+                    { new Guid("46e38ba2-fb03-46e0-8492-63b9c268da85"), 5, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2750), 202 },
+                    { new Guid("47532bf5-130b-423b-bb1f-8b2e71a8f6f2"), 3, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2680), 200 },
+                    { new Guid("48101ee3-bca4-4744-a7c5-e77e370a2b5b"), 5, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2760), 204 },
+                    { new Guid("4e853fa0-deab-4c38-9e50-c3545af0d5f3"), 5, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2760), 203 },
+                    { new Guid("57dfa9c2-e89f-4b1a-ab32-2e440c583bad"), 4, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2720), 202 },
+                    { new Guid("5b75d172-a703-4a26-8d77-bfa5a591a313"), 1, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2610), 208 },
+                    { new Guid("5f325d44-6186-4800-84b5-cf5fbf058330"), 2, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2630), 205 },
+                    { new Guid("6095f3f7-30c2-42f9-af40-39688b816815"), 2, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2620), 202 },
+                    { new Guid("6a8d3a45-dc01-4d92-88ac-6eda1b6bfd89"), 3, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2680), 202 },
+                    { new Guid("6f0939be-b16a-4fc3-ac17-58af4be14875"), 2, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2630), 207 },
+                    { new Guid("777a0912-d486-40ed-9981-ffd514a016da"), 2, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2630), 206 },
+                    { new Guid("789fcbdf-7168-4c83-b543-283cde841b0c"), 1, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2590), 203 },
+                    { new Guid("93933301-2cac-49b7-80da-b380c7d60389"), 3, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2700), 207 },
+                    { new Guid("9415ed4c-701c-42ef-a79d-9a250e118907"), 4, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2740), 210 },
+                    { new Guid("941fd184-eabe-401a-945a-97c9a0eb429b"), 2, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2620), 201 },
+                    { new Guid("971485c1-5bbe-43c3-a5dd-4f9080d1a798"), 1, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2610), 207 },
+                    { new Guid("9941e5fc-0a74-484f-9823-7a1526c37c51"), 4, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2740), 208 },
+                    { new Guid("9ee93fcf-363d-4e7b-9852-c7a2ff517f79"), 1, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2550), 200 },
+                    { new Guid("9fb42181-de32-471c-ad73-4c9f8320241d"), 2, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2640), 210 },
+                    { new Guid("a24ae76f-ce3a-491a-abc8-104712a15c7a"), 1, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2580), 201 },
+                    { new Guid("a40edf40-7f3f-405e-a717-b7ebec4e543c"), 4, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2720), 200 },
+                    { new Guid("a5c7632f-8214-4811-9d77-2cb0b0d19c02"), 4, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2730), 204 },
+                    { new Guid("ad8d81db-7fe4-4193-b0a6-900eb68eff58"), 3, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2710), 210 },
+                    { new Guid("b49f7dc9-129d-4e61-bbef-262b7fc91f42"), 3, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2700), 205 },
+                    { new Guid("b5415d4d-b551-4759-886d-ae3c44a84a0c"), 5, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2760), 206 },
+                    { new Guid("b6f9dfdd-6faa-4a90-9665-39e39df18877"), 5, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2770), 208 },
+                    { new Guid("beca7854-ebed-43b3-9e82-19f50c483869"), 4, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2720), 203 },
+                    { new Guid("c408d0be-6d1f-47c9-b435-03760d2bbfff"), 5, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2770), 210 },
+                    { new Guid("ca6b4016-1411-4f09-9bbc-36a5f4adbb4a"), 2, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2620), 203 },
+                    { new Guid("cfd60424-c1fb-4948-b9ca-00ddaa84d8c6"), 1, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2600), 205 },
+                    { new Guid("dd4e5977-956a-44a5-8bed-56b77bfa5785"), 4, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2730), 205 },
+                    { new Guid("e0c433aa-e2d5-4196-ab50-b355d0bf671e"), 2, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2640), 208 },
+                    { new Guid("e3752e9d-e9a0-4277-92b1-51ef0d6b8ff7"), 5, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2760), 205 },
+                    { new Guid("e414c132-7112-4415-95eb-1f769f30fd8b"), 1, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2610), 206 },
+                    { new Guid("e5cd8380-ba54-47af-82f9-db07551403ae"), 2, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2640), 209 },
+                    { new Guid("e9bd2968-e7ac-4d09-8f31-1fc7dccbac43"), 4, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2740), 207 },
+                    { new Guid("ea001936-4b93-4ad5-bb40-98469d00e1b0"), 3, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2710), 209 },
+                    { new Guid("ee25cfd3-b5e5-455f-be83-7a60dbd4b6fc"), 2, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2630), 204 },
+                    { new Guid("f0631f96-14f0-4ac5-9573-5f59945a699f"), 1, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2590), 204 },
+                    { new Guid("fb2402e1-24c4-4fa4-8921-a57acc4edfac"), 4, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2740), 209 },
+                    { new Guid("ff8979cf-87e1-4598-9b5b-1516166b81d7"), 5, new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(2770), 207 }
                 });
 
             migrationBuilder.InsertData(
@@ -674,10 +676,10 @@ namespace ClassroomBooking.Persistence.Migrations
                 columns: new[] { "Id", "BirthDate", "CreateTime", "Email", "FullName", "Gender", "Password", "PhoneNumber", "UserRole" },
                 values: new object[,]
                 {
-                    { new Guid("51540c49-d30f-45d0-9abf-de9bc9a8d2bb"), null, new DateTime(2024, 3, 10, 3, 57, 34, 369, DateTimeKind.Utc).AddTicks(2810), "teacher@gmail.com", "teacher", 0, "$2a$11$azMjJzgYlvtVrHhjJxJpsu.ymmo9w9UC/SKp9dO.5Q.k4ehd9DNXi", null, 1 },
-                    { new Guid("7946583b-13ef-406b-8a7a-6738c3105987"), null, new DateTime(2024, 3, 10, 3, 57, 34, 254, DateTimeKind.Utc).AddTicks(8240), "dean@gmail.com", "dean", 0, "$2a$11$vG8wBr7.dsgUMc3/aOXut.BQJOLgHb5g1ocKJ7IM4XHBlYRYD.suW", null, 2 },
-                    { new Guid("ae3842de-d8c5-400e-81a6-63e1a826668b"), null, new DateTime(2024, 3, 10, 3, 57, 34, 145, DateTimeKind.Utc).AddTicks(6950), "admin@gmail.com", "admin", 0, "$2a$11$GKCr5qLxSWYBT1tz.isEvO5U0MdJaIjI9Ufh/DygenvdGo9QS6B42", null, 3 },
-                    { new Guid("feecb044-7935-4e55-9245-445e258384ee"), null, new DateTime(2024, 3, 10, 3, 57, 34, 480, DateTimeKind.Utc).AddTicks(6950), "student@gmail.com", "student", 0, "$2a$11$UGdyI7X5aPZtmCCz9MDhCe61CaAMtAjeykU0YZxa48gCv.1IxNnUy", null, 0 }
+                    { new Guid("2ffaa9a2-3314-425f-85ca-a5a44df51f7c"), null, new DateTime(2024, 3, 10, 4, 55, 11, 519, DateTimeKind.Utc).AddTicks(6940), "admin@gmail.com", "admin", 0, "$2a$11$XszftaG1hWqoNDHryIorD.6zUVu9eqdnqVJwRYrgR4LXLXvSSHfP.", null, 3 },
+                    { new Guid("32fa17d9-b9b2-4564-a232-7335de84f209"), null, new DateTime(2024, 3, 10, 4, 55, 11, 742, DateTimeKind.Utc).AddTicks(3810), "teacher@gmail.com", "teacher", 0, "$2a$11$NmXUCovLbvX9MxfJjiXxz.Sk8D93J0FkO7obiUh2hACZl/2yyjcS.", null, 1 },
+                    { new Guid("6388e355-6889-4bab-b217-460b7af446e3"), null, new DateTime(2024, 3, 10, 4, 55, 11, 853, DateTimeKind.Utc).AddTicks(5590), "student@gmail.com", "student", 0, "$2a$11$5gvFvf8SWBoILSOdakDhU.xBceId5iBNQkeMFwhfIJ5.50TG0I/oC", null, 0 },
+                    { new Guid("f7958e57-f151-4c1e-9034-786b39b6d3b3"), null, new DateTime(2024, 3, 10, 4, 55, 11, 629, DateTimeKind.Utc).AddTicks(2790), "dean@gmail.com", "dean", 0, "$2a$11$x.e82vzVCdG5IQH4Ml4SwOC3dy.5fmDEcPFhrfecI5Q0j52S4gsU.", null, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -685,62 +687,67 @@ namespace ClassroomBooking.Persistence.Migrations
                 columns: new[] { "Id", "ClassroomId", "CreateTime", "KeyStatus", "UserId" },
                 values: new object[,]
                 {
-                    { new Guid("06995d50-ea5e-4c77-bc39-4b9bdad610cf"), new Guid("054e02f5-3be1-426b-8560-a4bd02d83cbf"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(820), 0, null },
-                    { new Guid("0a30539e-05cd-4ed4-a84f-c4da499071b6"), new Guid("fac3a3e8-b15c-40e0-a871-3d0f7e5f94b3"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(750), 0, null },
-                    { new Guid("134f0b04-5f5c-4971-9c6f-7760509be75f"), new Guid("ea59bbe5-027a-468b-8836-3ce0b42782c3"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(840), 0, null },
-                    { new Guid("13508d9d-4fe0-4ca5-a262-7c8219c3ced4"), new Guid("6ac86a87-6b39-4a94-b8f9-4b261a35a18d"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(830), 0, null },
-                    { new Guid("180ab39b-53bd-4748-85af-fad2c9fccf33"), new Guid("455f64ad-143d-473f-82ba-5c808560e872"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(870), 0, null },
-                    { new Guid("18644e06-d34f-400e-aeff-ffd595cf86a9"), new Guid("d1e3f3d7-675d-48b5-b0ea-bead6faf4f01"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(850), 0, null },
-                    { new Guid("18a65db9-f47e-4c55-ae22-a3685237fe96"), new Guid("bd83aec2-58bf-4468-a282-9060c840ecc8"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(840), 0, null },
-                    { new Guid("1c7f4d4c-cddb-41ff-9ca3-98c554c530e2"), new Guid("a46220a7-64fc-493d-babb-a5c548d11f95"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(830), 0, null },
-                    { new Guid("23594341-cf2a-4eb9-810b-3e21ae72f774"), new Guid("029da668-f86f-4a64-8d8a-75cbd02423d8"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(730), 0, null },
-                    { new Guid("27568a47-15ea-4eac-a651-7f8295780818"), new Guid("6597fc3b-4b6b-4ef1-94bc-63699d7f1f79"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(760), 0, null },
-                    { new Guid("2a8b82d6-aa62-4387-964b-b27964c838b1"), new Guid("0e195743-b407-4155-a25b-38cbf726985b"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(750), 0, null },
-                    { new Guid("2e0d2170-a102-43f0-8138-51b205ddf388"), new Guid("47bb6675-0d23-4528-952e-ceb046e3ee62"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(860), 0, null },
-                    { new Guid("3212e069-6d52-4c89-b3c8-970e33295216"), new Guid("e55d21d9-572e-4646-911c-44f9e7a12456"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(780), 0, null },
-                    { new Guid("3e174f70-cb28-4204-8dda-641233b47296"), new Guid("3c0c19e8-2fe4-4193-b1d4-cca242feb570"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(880), 0, null },
-                    { new Guid("40ffeeec-4581-4526-a9fb-1bd5ae59fb31"), new Guid("645daf2c-0788-465a-98f2-443ced657d4b"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(770), 0, null },
-                    { new Guid("426fdce5-cc0b-4b81-9d38-b20cd750e952"), new Guid("231c731c-7f71-4c00-bccf-5c2c64f03a1e"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(790), 0, null },
-                    { new Guid("46cfa060-f79b-4845-8c87-7a485da8d348"), new Guid("c63e6bd0-e712-48e5-86ad-364a46a9cf95"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(760), 0, null },
-                    { new Guid("478426c2-291d-4900-aef9-af312ba4b2cb"), new Guid("2897600a-13e1-4b98-9a8b-43659909b1b3"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(750), 0, null },
-                    { new Guid("482c2304-29a3-462e-9e65-751480fbd08a"), new Guid("06961358-d364-4e65-96c7-1a2f53da9d68"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(860), 0, null },
-                    { new Guid("4c0d67d4-bf73-4436-a68f-27dacdc5ca90"), new Guid("02c16dfc-9c2f-4e6c-984a-254f6cd26936"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(780), 0, null },
-                    { new Guid("5be5d8ac-58ad-40d9-9e00-960e747f7273"), new Guid("1ce6eb0a-5591-4fe0-aa83-9be6c4bb97bb"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(840), 0, null },
-                    { new Guid("60007d23-2ffd-41eb-bf17-4dc362dbcf7e"), new Guid("5e888a85-d674-4727-b3d9-e8641ff157a9"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(810), 0, null },
-                    { new Guid("6078dcc9-c52d-4563-b0ad-d9fdee023463"), new Guid("cac074ab-0c73-440f-b83e-25dc5b0df244"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(860), 0, null },
-                    { new Guid("653ea1b9-7e2e-49a5-bd67-47658e5dd353"), new Guid("d392cc41-e63e-48ac-be89-a6a825ece3fb"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(870), 0, null },
-                    { new Guid("673b2c00-7f3f-48d1-8704-364337c0e0bb"), new Guid("1dfd674f-0859-417b-9c47-ddc4fde08545"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(820), 0, null },
-                    { new Guid("67fcd0da-2946-4043-bb10-77be1d5892cc"), new Guid("a911f444-5d22-40ab-9592-f16bad08ad6d"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(840), 0, null },
-                    { new Guid("6d2a19aa-6745-45f7-9ac7-57717a1f387c"), new Guid("89d89b7a-0a09-44b2-881c-9cc0a42180e2"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(840), 0, null },
-                    { new Guid("75a01a64-d28e-4794-8e68-fa250050168f"), new Guid("fc86dc15-4d97-436e-9902-3d0128afb605"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(800), 0, null },
-                    { new Guid("770c1b10-38af-40a7-8712-6ef4bf3f02d3"), new Guid("97184f0a-1433-4675-b37b-99aaa84ec966"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(830), 0, null },
-                    { new Guid("779a9675-98d1-45c2-be69-520b3d6ee68e"), new Guid("9ac76204-9c43-4758-ba85-709599d5c086"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(800), 0, null },
-                    { new Guid("7c7b068f-2dd0-4943-9b45-5722ea5da154"), new Guid("3b0848ff-9e77-4665-a605-a53a309f6e7a"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(770), 0, null },
-                    { new Guid("84e1a94a-1803-4104-ba1e-21acedfcebee"), new Guid("ed6e064a-9231-4d9f-ab95-d828f6ee35d5"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(790), 0, null },
-                    { new Guid("89ab668d-6ea5-4d4d-a4ee-5f8cb74b6137"), new Guid("854e9792-2c57-4707-8be4-398dece1c835"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(750), 0, null },
-                    { new Guid("8b4f95e0-5633-47b0-b33a-b7a1c0d257c0"), new Guid("5cc6aeb7-f5b3-4f51-9be7-7f37b196d9ef"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(790), 0, null },
-                    { new Guid("8c372eea-c817-491c-84dd-6763e4be9a98"), new Guid("53f2b763-76cd-4a18-acba-1ea1caf460fe"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(820), 0, null },
-                    { new Guid("9355964c-69d6-4129-b9e3-6b6325376597"), new Guid("561e6743-fef8-42ca-84d6-c71a1d35f227"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(760), 0, null },
-                    { new Guid("95dd280b-f954-4dc4-8725-c500f5ebe4f8"), new Guid("97d832c6-1230-4c5b-9105-04aabf9c67a9"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(880), 0, null },
-                    { new Guid("a6c2553a-36bf-41de-ae36-7668739c15ee"), new Guid("aed7f9e3-a88c-481e-884c-41059113f307"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(760), 0, null },
-                    { new Guid("a93eef46-b50f-4050-8213-a9975e7c78ed"), new Guid("486ccb32-1f38-4f10-ab7a-7203744b55c4"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(810), 0, null },
-                    { new Guid("a9db2eb9-bd7e-43b1-81f8-b396496b71c3"), new Guid("0f821ebe-5456-466c-b394-e28b21c5ebe6"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(740), 0, null },
-                    { new Guid("ac4a7461-6084-41c3-9420-de5b85fccb3b"), new Guid("69e95ee8-af8b-47eb-a6a1-34cb92ff098d"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(830), 0, null },
-                    { new Guid("b36921b9-d88a-47ad-84ba-3f61ff34825a"), new Guid("2fa9409e-311b-47c8-a06e-ddb5bb3bb99d"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(850), 0, null },
-                    { new Guid("b6529a39-3740-4931-81a3-322fd981c202"), new Guid("911c73c4-95ba-4133-8617-7c934c6b36db"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(810), 0, null },
-                    { new Guid("bb266f8a-9906-4196-9b61-69ecd335da75"), new Guid("3cef97ab-c08c-4876-af22-e7627e319ec4"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(770), 0, null },
-                    { new Guid("bf1a98a7-f68d-46bf-87ce-b1361ad155a5"), new Guid("1816ade5-714e-4ea5-9aba-49a4ec7dbe13"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(870), 0, null },
-                    { new Guid("c61c8793-9f7a-40ee-82c2-36b04c548802"), new Guid("cdb41023-c1d3-4560-9f33-a1f7c60a0ebc"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(850), 0, null },
-                    { new Guid("cbb711d6-71ec-4cf7-a925-dbaac2a76076"), new Guid("4ee853a1-6ce0-48a7-9b0e-e30ff051ea3d"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(780), 0, null },
-                    { new Guid("cda682d8-0ee6-46e3-ad27-c6fb723ddd72"), new Guid("dd69139d-5456-4725-9285-8cd4bda63203"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(810), 0, null },
-                    { new Guid("dd73f946-1896-4564-bdb9-e24a2cd528c0"), new Guid("317f7a6c-cddb-4ff0-b655-770709f7bfba"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(880), 0, null },
-                    { new Guid("df3ef4ca-d3bd-4be3-acf1-065347be7862"), new Guid("40470fb9-ac7b-46f0-9bc0-43a0d4f4478e"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(800), 0, null },
-                    { new Guid("e002c00e-a531-4b36-b52c-3375cb0ab839"), new Guid("66149d1f-9f3e-4bbd-9ac6-743d7a6afdc6"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(770), 0, null },
-                    { new Guid("e04f6b73-f8e8-44f6-ae1f-d36ec24abd27"), new Guid("d03ef224-e56a-4915-b328-0c6361eb2c66"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(780), 0, null },
-                    { new Guid("e400d63e-03e6-4f3e-830f-7404af86662b"), new Guid("c8c873e7-669a-46d9-9406-513456192bfa"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(820), 0, null },
-                    { new Guid("f4b7e5a2-04d4-4c68-99a3-0cd0523a8e2f"), new Guid("dc74b82b-a82b-44cd-819d-fd1c0beda725"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(850), 0, null },
-                    { new Guid("f82d953f-09be-4aad-ba4a-5c463e21e56c"), new Guid("727e8eda-113b-4628-8ffa-4b268e675b32"), new DateTime(2024, 3, 10, 3, 57, 34, 589, DateTimeKind.Utc).AddTicks(860), 0, null }
+                    { new Guid("1ccee6cd-41df-42d7-b2fe-1e4d24e05a2f"), new Guid("57dfa9c2-e89f-4b1a-ab32-2e440c583bad"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3330), 0, null },
+                    { new Guid("20719f0d-07c3-41c1-8d01-e0a1555cfedd"), new Guid("5b75d172-a703-4a26-8d77-bfa5a591a313"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3190), 0, null },
+                    { new Guid("228997a6-d870-400f-9aa0-e76807464872"), new Guid("e0c433aa-e2d5-4196-ab50-b355d0bf671e"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3290), 0, null },
+                    { new Guid("2a061ca5-86a2-4ff7-bed1-ba3a1e2db77a"), new Guid("beca7854-ebed-43b3-9e82-19f50c483869"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3330), 0, null },
+                    { new Guid("2a2cd7e7-1ddf-4c16-a492-6a01c9df4851"), new Guid("4e853fa0-deab-4c38-9e50-c3545af0d5f3"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3360), 0, null },
+                    { new Guid("3047f379-d38a-46db-968e-26229750c158"), new Guid("a5c7632f-8214-4811-9d77-2cb0b0d19c02"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3330), 0, null },
+                    { new Guid("31f4c585-6fab-4946-8ede-0b1fa24af6a6"), new Guid("47532bf5-130b-423b-bb1f-8b2e71a8f6f2"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3300), 0, null },
+                    { new Guid("3313fa13-887b-40c6-8a57-54e6b203d430"), new Guid("3ea7bd90-029d-41ba-9564-36c42513df85"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3340), 0, null },
+                    { new Guid("3520882c-b151-4250-b1ff-51fdaff9e332"), new Guid("30237486-9607-4979-9da5-db262720ce31"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3320), 0, null },
+                    { new Guid("3c7e9cfc-3092-4949-8a4b-d08759616043"), new Guid("93933301-2cac-49b7-80da-b380c7d60389"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3310), 0, null },
+                    { new Guid("3d29772e-1c9a-4eb4-bef1-aa32b8c05157"), new Guid("0609beb8-1053-4f57-a9c0-03e466e8909c"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3200), 0, null },
+                    { new Guid("3f55535b-033f-43a2-aaa9-59363717b7fe"), new Guid("b5415d4d-b551-4759-886d-ae3c44a84a0c"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3360), 0, null },
+                    { new Guid("474e5a74-406e-41c1-a46e-6a7ff43128e1"), new Guid("e9bd2968-e7ac-4d09-8f31-1fc7dccbac43"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3340), 0, null },
+                    { new Guid("4ce7d778-b432-4e22-9a1d-8308d534b876"), new Guid("429fce3c-9bfe-4123-8698-b53cfd99be24"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3350), 0, null },
+                    { new Guid("4f1e6a0a-2136-406c-8aac-e517d1923914"), new Guid("04d8b6f4-24c1-4c97-82f3-2bc3fef36bee"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3310), 0, null },
+                    { new Guid("55871ca0-faa5-4983-bd3e-b66f305e090a"), new Guid("ca6b4016-1411-4f09-9bbc-36a5f4adbb4a"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3210), 0, null },
+                    { new Guid("64e65bf4-b5d7-4393-93e2-b7a1e7d24f84"), new Guid("971485c1-5bbe-43c3-a5dd-4f9080d1a798"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3190), 0, null },
+                    { new Guid("6ce06c5d-f44d-4bfe-8ad0-3a21d414f072"), new Guid("ee25cfd3-b5e5-455f-be83-7a60dbd4b6fc"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3210), 0, null },
+                    { new Guid("6fd11c86-9a3b-453d-a62f-7979523bdd40"), new Guid("6f0939be-b16a-4fc3-ac17-58af4be14875"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3290), 0, null },
+                    { new Guid("7942ef47-4e68-418c-93d2-2ca1fa5d0c9a"), new Guid("b49f7dc9-129d-4e61-bbef-262b7fc91f42"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3310), 0, null },
+                    { new Guid("7f1ea2ae-db91-4b92-94f8-bbc8abdabf8c"), new Guid("ad8d81db-7fe4-4193-b0a6-900eb68eff58"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3320), 0, null },
+                    { new Guid("811e5f48-8fc7-493f-9f39-92b54fb083b9"), new Guid("5f325d44-6186-4800-84b5-cf5fbf058330"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3210), 0, null },
+                    { new Guid("812d5970-dee2-4457-adcb-c91c16dbd21e"), new Guid("6a8d3a45-dc01-4d92-88ac-6eda1b6bfd89"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3300), 0, null },
+                    { new Guid("8293300c-c0f6-4cad-be5e-08c6eaf185e5"), new Guid("3b8f3f67-5d08-4bbb-80b1-3ead9bb443de"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3310), 0, null },
+                    { new Guid("84f22920-1718-4865-9e91-e8640ff596c4"), new Guid("1ad2ca85-c6db-49db-b522-0dab1891dd72"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3330), 0, null },
+                    { new Guid("8514f5bd-d756-4955-ba2c-21850cd7b7c1"), new Guid("42038e4c-0271-4889-847f-b73f928fe5d9"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3370), 0, null },
+                    { new Guid("873184cf-d16f-432f-be49-18cebe0dd10c"), new Guid("fb2402e1-24c4-4fa4-8921-a57acc4edfac"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3340), 0, null },
+                    { new Guid("8d1ba9d6-39b3-4dbd-bcc1-ff71606fb83e"), new Guid("789fcbdf-7168-4c83-b543-283cde841b0c"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3180), 0, null },
+                    { new Guid("8ee51b02-5e61-4f86-81de-83b5f0324d9c"), new Guid("cfd60424-c1fb-4948-b9ca-00ddaa84d8c6"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3180), 0, null },
+                    { new Guid("8fd22a0c-46bb-4ad6-8cdb-00fa1d3845b5"), new Guid("941fd184-eabe-401a-945a-97c9a0eb429b"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3200), 0, null },
+                    { new Guid("977adf97-ae93-4bc7-8de5-3e4d30a41482"), new Guid("a40edf40-7f3f-405e-a717-b7ebec4e543c"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3320), 0, null },
+                    { new Guid("991fd769-67c4-4ab7-ad6e-63b5543ce72c"), new Guid("0b1d3b4d-760d-4c6f-bf44-6c910e86c027"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3350), 0, null },
+                    { new Guid("9e9f9aab-b34e-4e01-ab4d-14bf51a9af9e"), new Guid("e5cd8380-ba54-47af-82f9-db07551403ae"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3290), 0, null },
+                    { new Guid("9fb014fc-b34c-4fae-addf-c5e71acb7951"), new Guid("a24ae76f-ce3a-491a-abc8-104712a15c7a"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3170), 0, null },
+                    { new Guid("a158c963-9dd7-4275-952b-61e5f9c5d253"), new Guid("ff8979cf-87e1-4598-9b5b-1516166b81d7"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3370), 0, null },
+                    { new Guid("a3ab227a-a5e3-4684-a937-68b054139794"), new Guid("9fb42181-de32-471c-ad73-4c9f8320241d"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3290), 0, null },
+                    { new Guid("a97def36-a34a-47e5-ab89-60ea123d4929"), new Guid("9415ed4c-701c-42ef-a79d-9a250e118907"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3350), 0, null },
+                    { new Guid("b0831dd9-4f49-4dd4-b0f7-8272f4c330e2"), new Guid("18817dac-d617-45f0-b1d2-62c4cde557ed"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3200), 0, null },
+                    { new Guid("c04cf9ca-0a57-4711-96db-06c2172bf0b8"), new Guid("46e38ba2-fb03-46e0-8492-63b9c268da85"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3350), 0, null },
+                    { new Guid("cb70065f-076c-4903-9cb7-0111839b7a75"), new Guid("3eabeb07-60dd-4b6f-82d4-087ac46ad779"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3190), 0, null },
+                    { new Guid("cd7391b1-edb4-494e-83f1-36c75ac49f8a"), new Guid("dd4e5977-956a-44a5-8bed-56b77bfa5785"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3330), 0, null },
+                    { new Guid("d21ac3ac-06f0-4c50-a932-35c4896ae031"), new Guid("6095f3f7-30c2-42f9-af40-39688b816815"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3200), 0, null },
+                    { new Guid("d9b1e3e6-5a8e-479e-8a12-4affeb1139c5"), new Guid("9ee93fcf-363d-4e7b-9852-c7a2ff517f79"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3170), 0, null },
+                    { new Guid("d9dcd118-f4b5-4d06-92ce-d3461dff3496"), new Guid("e414c132-7112-4415-95eb-1f769f30fd8b"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3190), 0, null },
+                    { new Guid("dc5e170b-6576-4734-b234-7e18f9758edb"), new Guid("e3752e9d-e9a0-4277-92b1-51ef0d6b8ff7"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3360), 0, null },
+                    { new Guid("dc60b0d9-1cf9-44c2-b47f-d3805f83c5c3"), new Guid("777a0912-d486-40ed-9981-ffd514a016da"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3280), 0, null },
+                    { new Guid("de94930e-58ed-4fa7-b40e-23f0162a9150"), new Guid("ea001936-4b93-4ad5-bb40-98469d00e1b0"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3320), 0, null },
+                    { new Guid("dfbf55cb-2616-4133-9ec7-b5d8998312f1"), new Guid("373a09d3-b5b2-4968-b07a-1d930aa72f08"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3300), 0, null },
+                    { new Guid("e192b13e-5ba8-4792-80a8-b616c2bd277d"), new Guid("01a67120-ada5-412c-9b5e-6a335c3098e0"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3300), 0, null },
+                    { new Guid("e271b19e-d4d7-4c69-aa2b-42f997a3c064"), new Guid("18bd34a0-89b6-4dc6-9975-f23458cdd890"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3180), 0, null },
+                    { new Guid("e3fc6028-cac6-405f-9e09-f019e3aa446a"), new Guid("48101ee3-bca4-4744-a7c5-e77e370a2b5b"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3360), 0, null },
+                    { new Guid("e4381c12-ffdc-46f1-8261-996f6ea3c15b"), new Guid("b6f9dfdd-6faa-4a90-9665-39e39df18877"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3370), 0, null },
+                    { new Guid("e58cb672-bcc5-4fb3-a8ef-db94d2f25b10"), new Guid("c408d0be-6d1f-47c9-b435-03760d2bbfff"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3370), 0, null },
+                    { new Guid("e7cce20e-5dc7-456b-947a-dcb2c170fea8"), new Guid("f0631f96-14f0-4ac5-9573-5f59945a699f"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3180), 0, null },
+                    { new Guid("f50577fb-3f9e-482e-be25-a8ece215589e"), new Guid("9941e5fc-0a74-484f-9823-7a1526c37c51"), new DateTime(2024, 3, 10, 4, 55, 11, 962, DateTimeKind.Utc).AddTicks(3340), 0, null }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TransferKeyRequests_KeyId",
+                table: "TransferKeyRequests",
+                column: "KeyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TransferKeyRequests_RecipientId",
@@ -757,572 +764,572 @@ namespace ClassroomBooking.Persistence.Migrations
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("06995d50-ea5e-4c77-bc39-4b9bdad610cf"));
+                keyValue: new Guid("1ccee6cd-41df-42d7-b2fe-1e4d24e05a2f"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("0a30539e-05cd-4ed4-a84f-c4da499071b6"));
+                keyValue: new Guid("20719f0d-07c3-41c1-8d01-e0a1555cfedd"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("134f0b04-5f5c-4971-9c6f-7760509be75f"));
+                keyValue: new Guid("228997a6-d870-400f-9aa0-e76807464872"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("13508d9d-4fe0-4ca5-a262-7c8219c3ced4"));
+                keyValue: new Guid("2a061ca5-86a2-4ff7-bed1-ba3a1e2db77a"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("180ab39b-53bd-4748-85af-fad2c9fccf33"));
+                keyValue: new Guid("2a2cd7e7-1ddf-4c16-a492-6a01c9df4851"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("18644e06-d34f-400e-aeff-ffd595cf86a9"));
+                keyValue: new Guid("3047f379-d38a-46db-968e-26229750c158"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("18a65db9-f47e-4c55-ae22-a3685237fe96"));
+                keyValue: new Guid("31f4c585-6fab-4946-8ede-0b1fa24af6a6"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("1c7f4d4c-cddb-41ff-9ca3-98c554c530e2"));
+                keyValue: new Guid("3313fa13-887b-40c6-8a57-54e6b203d430"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("23594341-cf2a-4eb9-810b-3e21ae72f774"));
+                keyValue: new Guid("3520882c-b151-4250-b1ff-51fdaff9e332"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("27568a47-15ea-4eac-a651-7f8295780818"));
+                keyValue: new Guid("3c7e9cfc-3092-4949-8a4b-d08759616043"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("2a8b82d6-aa62-4387-964b-b27964c838b1"));
+                keyValue: new Guid("3d29772e-1c9a-4eb4-bef1-aa32b8c05157"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("2e0d2170-a102-43f0-8138-51b205ddf388"));
+                keyValue: new Guid("3f55535b-033f-43a2-aaa9-59363717b7fe"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("3212e069-6d52-4c89-b3c8-970e33295216"));
+                keyValue: new Guid("474e5a74-406e-41c1-a46e-6a7ff43128e1"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("3e174f70-cb28-4204-8dda-641233b47296"));
+                keyValue: new Guid("4ce7d778-b432-4e22-9a1d-8308d534b876"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("40ffeeec-4581-4526-a9fb-1bd5ae59fb31"));
+                keyValue: new Guid("4f1e6a0a-2136-406c-8aac-e517d1923914"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("426fdce5-cc0b-4b81-9d38-b20cd750e952"));
+                keyValue: new Guid("55871ca0-faa5-4983-bd3e-b66f305e090a"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("46cfa060-f79b-4845-8c87-7a485da8d348"));
+                keyValue: new Guid("64e65bf4-b5d7-4393-93e2-b7a1e7d24f84"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("478426c2-291d-4900-aef9-af312ba4b2cb"));
+                keyValue: new Guid("6ce06c5d-f44d-4bfe-8ad0-3a21d414f072"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("482c2304-29a3-462e-9e65-751480fbd08a"));
+                keyValue: new Guid("6fd11c86-9a3b-453d-a62f-7979523bdd40"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("4c0d67d4-bf73-4436-a68f-27dacdc5ca90"));
+                keyValue: new Guid("7942ef47-4e68-418c-93d2-2ca1fa5d0c9a"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("5be5d8ac-58ad-40d9-9e00-960e747f7273"));
+                keyValue: new Guid("7f1ea2ae-db91-4b92-94f8-bbc8abdabf8c"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("60007d23-2ffd-41eb-bf17-4dc362dbcf7e"));
+                keyValue: new Guid("811e5f48-8fc7-493f-9f39-92b54fb083b9"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("6078dcc9-c52d-4563-b0ad-d9fdee023463"));
+                keyValue: new Guid("812d5970-dee2-4457-adcb-c91c16dbd21e"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("653ea1b9-7e2e-49a5-bd67-47658e5dd353"));
+                keyValue: new Guid("8293300c-c0f6-4cad-be5e-08c6eaf185e5"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("673b2c00-7f3f-48d1-8704-364337c0e0bb"));
+                keyValue: new Guid("84f22920-1718-4865-9e91-e8640ff596c4"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("67fcd0da-2946-4043-bb10-77be1d5892cc"));
+                keyValue: new Guid("8514f5bd-d756-4955-ba2c-21850cd7b7c1"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("6d2a19aa-6745-45f7-9ac7-57717a1f387c"));
+                keyValue: new Guid("873184cf-d16f-432f-be49-18cebe0dd10c"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("75a01a64-d28e-4794-8e68-fa250050168f"));
+                keyValue: new Guid("8d1ba9d6-39b3-4dbd-bcc1-ff71606fb83e"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("770c1b10-38af-40a7-8712-6ef4bf3f02d3"));
+                keyValue: new Guid("8ee51b02-5e61-4f86-81de-83b5f0324d9c"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("779a9675-98d1-45c2-be69-520b3d6ee68e"));
+                keyValue: new Guid("8fd22a0c-46bb-4ad6-8cdb-00fa1d3845b5"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("7c7b068f-2dd0-4943-9b45-5722ea5da154"));
+                keyValue: new Guid("977adf97-ae93-4bc7-8de5-3e4d30a41482"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("84e1a94a-1803-4104-ba1e-21acedfcebee"));
+                keyValue: new Guid("991fd769-67c4-4ab7-ad6e-63b5543ce72c"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("89ab668d-6ea5-4d4d-a4ee-5f8cb74b6137"));
+                keyValue: new Guid("9e9f9aab-b34e-4e01-ab4d-14bf51a9af9e"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("8b4f95e0-5633-47b0-b33a-b7a1c0d257c0"));
+                keyValue: new Guid("9fb014fc-b34c-4fae-addf-c5e71acb7951"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("8c372eea-c817-491c-84dd-6763e4be9a98"));
+                keyValue: new Guid("a158c963-9dd7-4275-952b-61e5f9c5d253"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("9355964c-69d6-4129-b9e3-6b6325376597"));
+                keyValue: new Guid("a3ab227a-a5e3-4684-a937-68b054139794"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("95dd280b-f954-4dc4-8725-c500f5ebe4f8"));
+                keyValue: new Guid("a97def36-a34a-47e5-ab89-60ea123d4929"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("a6c2553a-36bf-41de-ae36-7668739c15ee"));
+                keyValue: new Guid("b0831dd9-4f49-4dd4-b0f7-8272f4c330e2"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("a93eef46-b50f-4050-8213-a9975e7c78ed"));
+                keyValue: new Guid("c04cf9ca-0a57-4711-96db-06c2172bf0b8"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("a9db2eb9-bd7e-43b1-81f8-b396496b71c3"));
+                keyValue: new Guid("cb70065f-076c-4903-9cb7-0111839b7a75"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("ac4a7461-6084-41c3-9420-de5b85fccb3b"));
+                keyValue: new Guid("cd7391b1-edb4-494e-83f1-36c75ac49f8a"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("b36921b9-d88a-47ad-84ba-3f61ff34825a"));
+                keyValue: new Guid("d21ac3ac-06f0-4c50-a932-35c4896ae031"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("b6529a39-3740-4931-81a3-322fd981c202"));
+                keyValue: new Guid("d9b1e3e6-5a8e-479e-8a12-4affeb1139c5"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("bb266f8a-9906-4196-9b61-69ecd335da75"));
+                keyValue: new Guid("d9dcd118-f4b5-4d06-92ce-d3461dff3496"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("bf1a98a7-f68d-46bf-87ce-b1361ad155a5"));
+                keyValue: new Guid("dc5e170b-6576-4734-b234-7e18f9758edb"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("c61c8793-9f7a-40ee-82c2-36b04c548802"));
+                keyValue: new Guid("dc60b0d9-1cf9-44c2-b47f-d3805f83c5c3"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("cbb711d6-71ec-4cf7-a925-dbaac2a76076"));
+                keyValue: new Guid("de94930e-58ed-4fa7-b40e-23f0162a9150"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("cda682d8-0ee6-46e3-ad27-c6fb723ddd72"));
+                keyValue: new Guid("dfbf55cb-2616-4133-9ec7-b5d8998312f1"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("dd73f946-1896-4564-bdb9-e24a2cd528c0"));
+                keyValue: new Guid("e192b13e-5ba8-4792-80a8-b616c2bd277d"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("df3ef4ca-d3bd-4be3-acf1-065347be7862"));
+                keyValue: new Guid("e271b19e-d4d7-4c69-aa2b-42f997a3c064"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("e002c00e-a531-4b36-b52c-3375cb0ab839"));
+                keyValue: new Guid("e3fc6028-cac6-405f-9e09-f019e3aa446a"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("e04f6b73-f8e8-44f6-ae1f-d36ec24abd27"));
+                keyValue: new Guid("e4381c12-ffdc-46f1-8261-996f6ea3c15b"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("e400d63e-03e6-4f3e-830f-7404af86662b"));
+                keyValue: new Guid("e58cb672-bcc5-4fb3-a8ef-db94d2f25b10"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("f4b7e5a2-04d4-4c68-99a3-0cd0523a8e2f"));
+                keyValue: new Guid("e7cce20e-5dc7-456b-947a-dcb2c170fea8"));
 
             migrationBuilder.DeleteData(
                 table: "Keys",
                 keyColumn: "Id",
-                keyValue: new Guid("f82d953f-09be-4aad-ba4a-5c463e21e56c"));
+                keyValue: new Guid("f50577fb-3f9e-482e-be25-a8ece215589e"));
 
             migrationBuilder.DeleteData(
                 table: "Users",
                 keyColumn: "Id",
-                keyValue: new Guid("51540c49-d30f-45d0-9abf-de9bc9a8d2bb"));
+                keyValue: new Guid("2ffaa9a2-3314-425f-85ca-a5a44df51f7c"));
 
             migrationBuilder.DeleteData(
                 table: "Users",
                 keyColumn: "Id",
-                keyValue: new Guid("7946583b-13ef-406b-8a7a-6738c3105987"));
+                keyValue: new Guid("32fa17d9-b9b2-4564-a232-7335de84f209"));
 
             migrationBuilder.DeleteData(
                 table: "Users",
                 keyColumn: "Id",
-                keyValue: new Guid("ae3842de-d8c5-400e-81a6-63e1a826668b"));
+                keyValue: new Guid("6388e355-6889-4bab-b217-460b7af446e3"));
 
             migrationBuilder.DeleteData(
                 table: "Users",
                 keyColumn: "Id",
-                keyValue: new Guid("feecb044-7935-4e55-9245-445e258384ee"));
+                keyValue: new Guid("f7958e57-f151-4c1e-9034-786b39b6d3b3"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("029da668-f86f-4a64-8d8a-75cbd02423d8"));
+                keyValue: new Guid("01a67120-ada5-412c-9b5e-6a335c3098e0"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("02c16dfc-9c2f-4e6c-984a-254f6cd26936"));
+                keyValue: new Guid("04d8b6f4-24c1-4c97-82f3-2bc3fef36bee"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("054e02f5-3be1-426b-8560-a4bd02d83cbf"));
+                keyValue: new Guid("0609beb8-1053-4f57-a9c0-03e466e8909c"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("06961358-d364-4e65-96c7-1a2f53da9d68"));
+                keyValue: new Guid("0b1d3b4d-760d-4c6f-bf44-6c910e86c027"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("0e195743-b407-4155-a25b-38cbf726985b"));
+                keyValue: new Guid("18817dac-d617-45f0-b1d2-62c4cde557ed"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("0f821ebe-5456-466c-b394-e28b21c5ebe6"));
+                keyValue: new Guid("18bd34a0-89b6-4dc6-9975-f23458cdd890"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("1816ade5-714e-4ea5-9aba-49a4ec7dbe13"));
+                keyValue: new Guid("1ad2ca85-c6db-49db-b522-0dab1891dd72"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("1ce6eb0a-5591-4fe0-aa83-9be6c4bb97bb"));
+                keyValue: new Guid("30237486-9607-4979-9da5-db262720ce31"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("1dfd674f-0859-417b-9c47-ddc4fde08545"));
+                keyValue: new Guid("373a09d3-b5b2-4968-b07a-1d930aa72f08"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("231c731c-7f71-4c00-bccf-5c2c64f03a1e"));
+                keyValue: new Guid("3b8f3f67-5d08-4bbb-80b1-3ead9bb443de"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("2897600a-13e1-4b98-9a8b-43659909b1b3"));
+                keyValue: new Guid("3ea7bd90-029d-41ba-9564-36c42513df85"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("2fa9409e-311b-47c8-a06e-ddb5bb3bb99d"));
+                keyValue: new Guid("3eabeb07-60dd-4b6f-82d4-087ac46ad779"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("317f7a6c-cddb-4ff0-b655-770709f7bfba"));
+                keyValue: new Guid("42038e4c-0271-4889-847f-b73f928fe5d9"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("3b0848ff-9e77-4665-a605-a53a309f6e7a"));
+                keyValue: new Guid("429fce3c-9bfe-4123-8698-b53cfd99be24"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("3c0c19e8-2fe4-4193-b1d4-cca242feb570"));
+                keyValue: new Guid("46e38ba2-fb03-46e0-8492-63b9c268da85"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("3cef97ab-c08c-4876-af22-e7627e319ec4"));
+                keyValue: new Guid("47532bf5-130b-423b-bb1f-8b2e71a8f6f2"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("40470fb9-ac7b-46f0-9bc0-43a0d4f4478e"));
+                keyValue: new Guid("48101ee3-bca4-4744-a7c5-e77e370a2b5b"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("455f64ad-143d-473f-82ba-5c808560e872"));
+                keyValue: new Guid("4e853fa0-deab-4c38-9e50-c3545af0d5f3"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("47bb6675-0d23-4528-952e-ceb046e3ee62"));
+                keyValue: new Guid("57dfa9c2-e89f-4b1a-ab32-2e440c583bad"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("486ccb32-1f38-4f10-ab7a-7203744b55c4"));
+                keyValue: new Guid("5b75d172-a703-4a26-8d77-bfa5a591a313"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("4ee853a1-6ce0-48a7-9b0e-e30ff051ea3d"));
+                keyValue: new Guid("5f325d44-6186-4800-84b5-cf5fbf058330"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("53f2b763-76cd-4a18-acba-1ea1caf460fe"));
+                keyValue: new Guid("6095f3f7-30c2-42f9-af40-39688b816815"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("561e6743-fef8-42ca-84d6-c71a1d35f227"));
+                keyValue: new Guid("6a8d3a45-dc01-4d92-88ac-6eda1b6bfd89"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("5cc6aeb7-f5b3-4f51-9be7-7f37b196d9ef"));
+                keyValue: new Guid("6f0939be-b16a-4fc3-ac17-58af4be14875"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("5e888a85-d674-4727-b3d9-e8641ff157a9"));
+                keyValue: new Guid("777a0912-d486-40ed-9981-ffd514a016da"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("645daf2c-0788-465a-98f2-443ced657d4b"));
+                keyValue: new Guid("789fcbdf-7168-4c83-b543-283cde841b0c"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("6597fc3b-4b6b-4ef1-94bc-63699d7f1f79"));
+                keyValue: new Guid("93933301-2cac-49b7-80da-b380c7d60389"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("66149d1f-9f3e-4bbd-9ac6-743d7a6afdc6"));
+                keyValue: new Guid("9415ed4c-701c-42ef-a79d-9a250e118907"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("69e95ee8-af8b-47eb-a6a1-34cb92ff098d"));
+                keyValue: new Guid("941fd184-eabe-401a-945a-97c9a0eb429b"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("6ac86a87-6b39-4a94-b8f9-4b261a35a18d"));
+                keyValue: new Guid("971485c1-5bbe-43c3-a5dd-4f9080d1a798"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("727e8eda-113b-4628-8ffa-4b268e675b32"));
+                keyValue: new Guid("9941e5fc-0a74-484f-9823-7a1526c37c51"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("854e9792-2c57-4707-8be4-398dece1c835"));
+                keyValue: new Guid("9ee93fcf-363d-4e7b-9852-c7a2ff517f79"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("89d89b7a-0a09-44b2-881c-9cc0a42180e2"));
+                keyValue: new Guid("9fb42181-de32-471c-ad73-4c9f8320241d"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("911c73c4-95ba-4133-8617-7c934c6b36db"));
+                keyValue: new Guid("a24ae76f-ce3a-491a-abc8-104712a15c7a"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("97184f0a-1433-4675-b37b-99aaa84ec966"));
+                keyValue: new Guid("a40edf40-7f3f-405e-a717-b7ebec4e543c"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("97d832c6-1230-4c5b-9105-04aabf9c67a9"));
+                keyValue: new Guid("a5c7632f-8214-4811-9d77-2cb0b0d19c02"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("9ac76204-9c43-4758-ba85-709599d5c086"));
+                keyValue: new Guid("ad8d81db-7fe4-4193-b0a6-900eb68eff58"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("a46220a7-64fc-493d-babb-a5c548d11f95"));
+                keyValue: new Guid("b49f7dc9-129d-4e61-bbef-262b7fc91f42"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("a911f444-5d22-40ab-9592-f16bad08ad6d"));
+                keyValue: new Guid("b5415d4d-b551-4759-886d-ae3c44a84a0c"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("aed7f9e3-a88c-481e-884c-41059113f307"));
+                keyValue: new Guid("b6f9dfdd-6faa-4a90-9665-39e39df18877"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("bd83aec2-58bf-4468-a282-9060c840ecc8"));
+                keyValue: new Guid("beca7854-ebed-43b3-9e82-19f50c483869"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("c63e6bd0-e712-48e5-86ad-364a46a9cf95"));
+                keyValue: new Guid("c408d0be-6d1f-47c9-b435-03760d2bbfff"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("c8c873e7-669a-46d9-9406-513456192bfa"));
+                keyValue: new Guid("ca6b4016-1411-4f09-9bbc-36a5f4adbb4a"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("cac074ab-0c73-440f-b83e-25dc5b0df244"));
+                keyValue: new Guid("cfd60424-c1fb-4948-b9ca-00ddaa84d8c6"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("cdb41023-c1d3-4560-9f33-a1f7c60a0ebc"));
+                keyValue: new Guid("dd4e5977-956a-44a5-8bed-56b77bfa5785"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("d03ef224-e56a-4915-b328-0c6361eb2c66"));
+                keyValue: new Guid("e0c433aa-e2d5-4196-ab50-b355d0bf671e"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("d1e3f3d7-675d-48b5-b0ea-bead6faf4f01"));
+                keyValue: new Guid("e3752e9d-e9a0-4277-92b1-51ef0d6b8ff7"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("d392cc41-e63e-48ac-be89-a6a825ece3fb"));
+                keyValue: new Guid("e414c132-7112-4415-95eb-1f769f30fd8b"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("dc74b82b-a82b-44cd-819d-fd1c0beda725"));
+                keyValue: new Guid("e5cd8380-ba54-47af-82f9-db07551403ae"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("dd69139d-5456-4725-9285-8cd4bda63203"));
+                keyValue: new Guid("e9bd2968-e7ac-4d09-8f31-1fc7dccbac43"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("e55d21d9-572e-4646-911c-44f9e7a12456"));
+                keyValue: new Guid("ea001936-4b93-4ad5-bb40-98469d00e1b0"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("ea59bbe5-027a-468b-8836-3ce0b42782c3"));
+                keyValue: new Guid("ee25cfd3-b5e5-455f-be83-7a60dbd4b6fc"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("ed6e064a-9231-4d9f-ab95-d828f6ee35d5"));
+                keyValue: new Guid("f0631f96-14f0-4ac5-9573-5f59945a699f"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("fac3a3e8-b15c-40e0-a871-3d0f7e5f94b3"));
+                keyValue: new Guid("fb2402e1-24c4-4fa4-8921-a57acc4edfac"));
 
             migrationBuilder.DeleteData(
                 table: "Classrooms",
                 keyColumn: "Id",
-                keyValue: new Guid("fc86dc15-4d97-436e-9902-3d0128afb605"));
+                keyValue: new Guid("ff8979cf-87e1-4598-9b5b-1516166b81d7"));
 
             migrationBuilder.InsertData(
                 table: "Classrooms",
