@@ -29,7 +29,9 @@ public class TransferKeyCommandHandler: IRequestHandler<TransferKeyCommand>
 
         var requestIsExists = await _transferKeyRequestRepository.Entities
             .AnyAsync(transferRequest => transferRequest.RecipientId == request.UserId 
-                                         && transferRequest.KeyId == request.KeyId, cancellationToken: cancellationToken);
+                                         && transferRequest.KeyId == request.KeyId 
+                                         && transferRequest.Status == RequestStatus.UnderConsideration,
+                cancellationToken: cancellationToken);
         if (requestIsExists) throw new BadRequestException("The transfer request already exists");
 
         var transferRequest = new TransferKeyRequest
