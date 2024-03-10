@@ -8,7 +8,12 @@ namespace ClassroomBooking.Application.Features.Key.Commands.RejectTransferKeyRe
 public sealed class RejectTransferKeyRequestCommandHandler : IRequestHandler<RejectTransferKeyRequestCommand>
 {
     private readonly ITransferKeyRequestRepository _transferKeyRequestRepository;
-    
+
+    public RejectTransferKeyRequestCommandHandler(ITransferKeyRequestRepository transferKeyRequestRepository)
+    {
+        _transferKeyRequestRepository = transferKeyRequestRepository;
+    }
+
     public async Task Handle(RejectTransferKeyRequestCommand request, CancellationToken cancellationToken)
     {
         var transferRequest = await _transferKeyRequestRepository.GetByRecipientIdAndKeyId(request.UserId, request.KeyId);
