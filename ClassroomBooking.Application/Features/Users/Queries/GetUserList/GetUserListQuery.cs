@@ -4,4 +4,4 @@ using MediatR;
 
 namespace ClassroomBooking.Application.Features.Users.Queries.GetUserList;
 
-public sealed record GetUserListQuery(UserSearchParameters SearchParameters) : IRequest<PagedListDto<UserFullDto>>;
+public sealed record GetUserListQuery(Guid UserId, UserSearchParameters SearchParameters) : IRequest<PagedListDto<UserFullDto>>;

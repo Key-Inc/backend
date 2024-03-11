@@ -3,6 +3,7 @@ using ClassroomBooking.Application.Common.Extensions;
 using ClassroomBooking.Application.Common.Interfaces.Repositories;
 using ClassroomBooking.Application.DTOs.Responses;
 using ClassroomBooking.Domain.Entities;
+using ClassroomBooking.Domain.Entities.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +24,7 @@ public sealed class GetTransferKeyRequestsQueryHandler : IRequestHandler<GetTran
         CancellationToken cancellationToken)
     {
         IQueryable<TransferKeyRequest> transferRequests = _transferKeyRequestRepository.Entities
+            .Where(req => req.Status == RequestStatus.UnderConsideration)
             .Where(req => req.RecipientId == request.RecipientId)
             .Include(req => req.Recipient)
             .Include(req => req.Key);
@@ -32,9 +34,6 @@ public sealed class GetTransferKeyRequestsQueryHandler : IRequestHandler<GetTran
                 req.Key != null
                 && req.Key.User != null
                 && req.Key.User.FullName.ToUpper().Contains(request.SearchParameters.ApplicantName.ToUpper()));
-
-        if (request.SearchParameters.Status != null)
-            transferRequests = transferRequests.Where(req => req.Status == request.SearchParameters.Status);
         
         var pagedList = await transferRequests.ToPagedListAsync<TransferKeyRequest, TransferKeyRequestDto>(
             request.SearchParameters,

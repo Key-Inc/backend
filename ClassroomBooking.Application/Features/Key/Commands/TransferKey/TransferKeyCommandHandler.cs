@@ -1,4 +1,5 @@
-﻿using ClassroomBooking.Application.Common.Exceptions.Base;
+﻿using ClassroomBooking.Application.Common.Exceptions;
+using ClassroomBooking.Application.Common.Exceptions.Base;
 using ClassroomBooking.Application.Common.Interfaces.Repositories;
 using ClassroomBooking.Domain.Entities;
 using ClassroomBooking.Domain.Entities.Enums;
@@ -25,7 +26,7 @@ public class TransferKeyCommandHandler: IRequestHandler<TransferKeyCommand>
         var key = await _keyRepository.GetByIdAsync(request.KeyId);
         
         if (key == null) throw new NotFoundException(nameof(Domain.Entities.Key), request.KeyId);
-        if (key.UserId != request.OwnerId) throw new BadRequestException($"User with id={request.OwnerId} is not owner");
+        if (key.UserId != request.OwnerId) throw new NotOwnerException(request.OwnerId);
 
         var requestIsExists = await _transferKeyRequestRepository.Entities
             .AnyAsync(transferRequest => transferRequest.RecipientId == request.UserId 
@@ -37,6 +38,7 @@ public class TransferKeyCommandHandler: IRequestHandler<TransferKeyCommand>
         var transferRequest = new TransferKeyRequest
         {
             KeyId = request.KeyId,
+            ApplicantId = request.OwnerId,
             RecipientId = request.UserId,
             Status = RequestStatus.UnderConsideration
         };

@@ -21,7 +21,7 @@ public sealed class UserController : BaseController
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<ActionResult<PagedListDto<UserFullDto>>> GetUserList([FromQuery] UserSearchParameters searchParameters)
     {
-        var getUserListQuery = new GetUserListQuery(searchParameters);
+        var getUserListQuery = new GetUserListQuery(UserId, searchParameters);
         var pagedList = await Mediator.Send(getUserListQuery);
 
         return Ok(pagedList);

@@ -15,7 +15,7 @@ public static class QueryableExtensions
         IConfigurationProvider configurationProvider)
     {
         var totalPages = (int)Math.Ceiling(query.Count() / (parameters.Size * 1.0));
-        if (parameters.Page > totalPages && query.Any()) throw new BadRequestException("Invalid value for attribute page");
+        if (parameters.Page > totalPages && query.Any()) throw new BadRequestException("Недопустимое значение страницы");
 
         var paged = query
             .Skip((parameters.Page - 1) * parameters.Size)
